@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data >
+        <!-- Data Propinsi -->
+        <!-- tree view -->
+        <record id="view_ref_propinsi_tree" model="ir.ui.view">
+            <field name="name">ref_propinsi_tree</field>
+            <field name="model">ref.propinsi</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Propinsi">
+                    <field name="name" />
+                    <field name="singkatan" />
+                    <field name="description" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_ref_propinsi_form" model="ir.ui.view">
+            <field name="name">ref_propinsi_form</field>
+            <field name="model">ref.propinsi</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Propinsi">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Propinsi Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="singkatan" />
+                                <field name="description" />
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kotas">
+                                <field name="kota_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_ref_propinsi_search" model="ir.ui.view">
+            <field name="name">ref_propinsi</field>
+            <field name="model">ref.propinsi</field>
+            <field name="arch" type="xml">
+                <search string="Propinsi">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Singkatan" name="filter_by_singkatan" domain="[('singkatan','=','')]" />
+                    <filter string="Description" name="filter_by_description" domain="[('description','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="singkatan" select="True"/>
+                    <field name="description" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_ref_propinsi_kanban" model="ir.ui.view" >
+            <field name="name">ref_propinsi</field>
+            <field name="model">ref.propinsi</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="singkatan" />
+                    <field name="description" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_ref_propinsi" model="ir.actions.act_window">
+            <field name="name">Propinsi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref.propinsi</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Propinsi
+                </p><p>
+                Click the Create button to add a new Propinsi
+                </p>
+            </field>
+        </record>
+
+        <!-- Data Kota / Kabupaten -->
+        <!-- tree view -->
+        <record id="view_ref_kota_tree" model="ir.ui.view">
+            <field name="name">ref_kota_tree</field>
+            <field name="model">ref.kota</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kota">
+                    <field name="name" />
+                    <field name="singkatan" />
+                    <field name="description" />
+                    <field name="propinsi_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_ref_kota_form" model="ir.ui.view">
+            <field name="name">ref_kota_form</field>
+            <field name="model">ref.kota</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kota">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kota Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="singkatan" />
+                                <field name="description" />
+                            </group>
+                            <group>
+                                <field name="propinsi_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kecamatans">
+                                <field name="kecamatan_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_ref_kota_search" model="ir.ui.view">
+            <field name="name">ref_kota</field>
+            <field name="model">ref.kota</field>
+            <field name="arch" type="xml">
+                <search string="Kota">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Singkatan" name="filter_by_singkatan" domain="[('singkatan','=','')]" />
+                    <filter string="Description" name="filter_by_description" domain="[('description','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="singkatan" select="True"/>
+                    <field name="description" select="True"/>
+                    <field name="propinsi_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Propinsi" domain="[]" name="group_by_propinsi_id" context="{'group_by':'propinsi_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_ref_kota_kanban" model="ir.ui.view" >
+            <field name="name">ref_kota</field>
+            <field name="model">ref.kota</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="singkatan" />
+                    <field name="description" />
+                    <field name="propinsi_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Propinsi</span> <field name="propinsi_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_ref_kota" model="ir.actions.act_window">
+            <field name="name">Kota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref.kota</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kota
+                </p><p>
+                Click the Create button to add a new Kota
+                </p>
+            </field>
+        </record>
+
+        <!-- Data Kecamatan -->
+        <!-- tree view -->
+        <record id="view_ref_kecamatan_tree" model="ir.ui.view">
+            <field name="name">ref_kecamatan_tree</field>
+            <field name="model">ref.kecamatan</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Kecamatan">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="kota_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_ref_kecamatan_form" model="ir.ui.view">
+            <field name="name">ref_kecamatan_form</field>
+            <field name="model">ref.kecamatan</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Kecamatan">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Kecamatan Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description" />
+                            </group>
+                            <group>
+                                <field name="kota_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Desas">
+                                <field name="desa_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_ref_kecamatan_search" model="ir.ui.view">
+            <field name="name">ref_kecamatan</field>
+            <field name="model">ref.kecamatan</field>
+            <field name="arch" type="xml">
+                <search string="Kecamatan">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Description" name="filter_by_description" domain="[('description','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="description" select="True"/>
+                    <field name="kota_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Kota" domain="[]" name="group_by_kota_id" context="{'group_by':'kota_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_ref_kecamatan_kanban" model="ir.ui.view" >
+            <field name="name">ref_kecamatan</field>
+            <field name="model">ref.kecamatan</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="kota_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Kota</span> <field name="kota_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_ref_kecamatan" model="ir.actions.act_window">
+            <field name="name">Kecamatan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref.kecamatan</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Kecamatan
+                </p><p>
+                Click the Create button to add a new Kecamatan
+                </p>
+            </field>
+        </record>
+
+        <!-- Data Desa -->
+        <!-- tree view -->
+        <record id="view_ref_desa_tree" model="ir.ui.view">
+            <field name="name">ref_desa_tree</field>
+            <field name="model">ref.desa</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Desa">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="kecamatan_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_ref_desa_form" model="ir.ui.view">
+            <field name="name">ref_desa_form</field>
+            <field name="model">ref.desa</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Desa">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Desa Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description" />
+                            </group>
+                            <group>
+                                <field name="kecamatan_id" />
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_ref_desa_search" model="ir.ui.view">
+            <field name="name">ref_desa</field>
+            <field name="model">ref.desa</field>
+            <field name="arch" type="xml">
+                <search string="Desa">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Description" name="filter_by_description" domain="[('description','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="description" select="True"/>
+                    <field name="kecamatan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Kecamatan" domain="[]" name="group_by_kecamatan_id" context="{'group_by':'kecamatan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_ref_desa_kanban" model="ir.ui.view" >
+            <field name="name">ref_desa</field>
+            <field name="model">ref.desa</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="kecamatan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Kecamatan</span> <field name="kecamatan_id"></field>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_ref_desa" model="ir.actions.act_window">
+            <field name="name">Desa</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref.desa</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Desa
+                </p><p>
+                Click the Create button to add a new Desa
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_cdn_ref_data" name="Ref Data Wilayah" parent="anggota_pks_config_menu"  sequence="80"/>
+        <menuitem id="menu_cdn_ref_propinsi" name="Ref Propinsi" parent="menu_cdn_ref_data" action="action_ref_propinsi" sequence="10"/>
+        <menuitem id="menu_cdn_ref_kota" name="Ref Kabupaten/Kota" parent="menu_cdn_ref_data" action="action_ref_kota" sequence="20"/>
+        <menuitem id="menu_cdn_ref_kecamatan" name="Ref Kecamatan" parent="menu_cdn_ref_data" action="action_ref_kecamatan" sequence="30"/>
+        <menuitem id="menu_cdn_ref_desa" name="Ref Desa/Kelurahan" parent="menu_cdn_ref_data" action="action_ref_desa" sequence="40"/>
+
+        
+    </data>
+</odoo>

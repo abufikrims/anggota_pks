@@ -1,0 +1,19 @@
+<odoo>
+	<data>
+		<record model="ir.module.category" id="module_category_anggota_pks">
+			<field name="name">anggota_pks</field>
+			<field name="description">Anggota PKS Groups</field>
+			<field name="sequence">10</field>
+		</record>
+		<record id="group_pks_user" model="res.groups">
+			<field name="name">User</field>
+			<field name="category_id" ref="module_category_anggota_pks"/>
+		</record>
+		<record id="group_pks_manager" model="res.groups">
+			<field name="name">Manager</field>
+			<field name="category_id" ref="module_category_anggota_pks"/>
+			<field name="implied_ids" eval="[(4, ref('group_pks_user'))]"/>
+        	<field name="users" eval="[(4, ref('base.user_admin'))]"/>
+		</record>
+	</data>
+</odoo>

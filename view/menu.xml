@@ -1,0 +1,8 @@
+<odoo>
+	<data>
+		<menuitem id="anggota_pks_top_menu" name="Aplikasi Manajemen Anggota PKS" sequence="20" web_icon="anggota_pks,static/description/icon.png" />
+		<menuitem id="anggota_pks_pendataan_menu" name="Pendataan" sequence="30" parent="anggota_pks_top_menu" />
+		<menuitem id="anggota_pks_keuangan_menu" name="Keuangan" sequence="40" parent="anggota_pks_top_menu" />
+		<menuitem id="anggota_pks_config_menu" name="Pengaturan" sequence="50" parent="anggota_pks_top_menu" />
+	</data>
+</odoo>

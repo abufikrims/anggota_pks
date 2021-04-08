@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- report qweb view -->
+        <report id="report_pks_anggota_undefined_menu" string=" - Pks anggota"
+         model="pks_anggota" report_type="qweb-pdf" 
+         file="pks_anggota"  name="anggota_pks.pks_anggota_undefined_report" />
+
+        <!-- document template -->
+        <template id="anggota_pks.pks_anggota_undefined_report_document" >
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+                <div class="page">
+                    <h2>
+                        Pks anggota: <span t-field="doc.name"/>
+                    </h2>
+                    <div class="row mt32 mb32">
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Nik</strong>
+                            <p class="m-0" t-field="doc.nik" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jns kelamin</strong>
+                            <p class="m-0" t-field="doc.jns_kelamin" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tmp lahir</strong>
+                            <p class="m-0" t-field="doc.tmp_lahir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Tgl lahir</strong>
+                            <p class="m-0" t-field="doc.tgl_lahir" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Status kawin</strong>
+                            <p class="m-0" t-field="doc.status_kawin" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Murobhi</strong>
+                            <p class="m-0" t-field="doc.murobhi" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Amanah struktural</strong>
+                            <p class="m-0" t-field="doc.amanah_struktural" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan struktural</strong>
+                            <p class="m-0" t-field="doc.jabatan_struktural" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Amanah masyarakat</strong>
+                            <p class="m-0" t-field="doc.amanah_masyarakat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Jabatan masyarakat</strong>
+                            <p class="m-0" t-field="doc.jabatan_masyarakat" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Sdh kta</strong>
+                            <p class="m-0" t-field="doc.sdh_kta" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>No kta</strong>
+                            <p class="m-0" t-field="doc.no_kta" />
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pekerjaan</strong>
+                            <p class="m-0" t-field="doc.pekerjaan_id"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2">
+                            <strong>Pendidikan</strong>
+                            <p class="m-0" t-field="doc.pendidikan_id"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"/>
+                <h2>Keluarga</h2>
+                <table class="table table-sm o_main_table" name="keluarga_ids_table">
+                    <thead>
+                        <tr>
+                            <td> name</td>
+                            <td>Name</td>
+                            <td>Jns kelamin</td>
+                            <td>Tmp lahir</td>
+                            <td>Tgl lahir</td>
+                            <td>Anggota</td>
+                        </tr>
+                    </thead>
+                    <tbody class="keluarga_ids_tbody">
+                        <tr t-foreach="doc.keluarga_ids" t-as="line">
+                            <td><span t-field="line._name" /></td>
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.jns_kelamin" /></td>
+                            <td><span t-field="line.tmp_lahir" /></td>
+                            <td><span t-field="line.tgl_lahir" /></td>
+                            <td><span t-field="line.anggota_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+                <h2>Tarbiyah</h2>
+                <table class="table table-sm o_main_table" name="tarbiyah_ids_table">
+                    <thead>
+                        <tr>
+                            <td> name</td>
+                            <td>Name</td>
+                            <td>Tanggal</td>
+                            <td>Jenjang</td>
+                            <td>Anggota</td>
+                        </tr>
+                    </thead>
+                    <tbody class="tarbiyah_ids_tbody">
+                        <tr t-foreach="doc.tarbiyah_ids" t-as="line">
+                            <td><span t-field="line._name" /></td>
+                            <td><span t-field="line.name" /></td>
+                            <td><span t-field="line.tanggal" /></td>
+                            <td><span t-field="line.jenjang" /></td>
+                            <td><span t-field="line.anggota_id" /></td>
+                        </tr> <!-- foreach-->
+                    </tbody>
+                </table>
+                <div class="oe_structure"/>
+            </t>
+        </template>
+
+        <!-- main template -->
+        <template id="anggota_pks.pks_anggota_undefined_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="lang" t-value="doc.create_uid.lang"/>
+                    <t t-call="anggota_pks.pks_anggota_undefined_report_document" />
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- tree view -->
+        <record id="view_pks_anggota_tree" model="ir.ui.view">
+            <field name="name">pks_anggota_tree</field>
+            <field name="model">pks_anggota</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Pks anggota">
+                    <field name="name" />
+                    <field name="nik" />
+                    <field name="jns_kelamin" />
+                    <field name="tmp_lahir" />
+                    <field name="tgl_lahir" />
+                    <field name="status_kawin" />
+                    <field name="amanah_struktural" />
+                    <field name="jabatan_struktural" />
+                    <field name="pekerjaan_id" />
+                    <field name="pendidikan_id" />
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="view_pks_anggota_form" model="ir.ui.view">
+            <field name="name">pks_anggota_form</field>
+            <field name="model">pks_anggota</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Pks anggota">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
+                                <!--field name="detail_count" widget="statinfo" string="Detail(s)"/-->
+                                <!--field name="detail_ids" invisible="1"/-->
+                            <!--/button-->
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Pks anggota Name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        
+                        <group string="Data Anggota" col="4" colspan="4">
+                            <field name="nik" />
+                            <field name="jns_kelamin" />
+                            <field name="tmp_lahir" />
+                            <field name="tgl_lahir" />
+                            <field name="status_kawin" />
+                        </group>
+                        <group string="Alamat Sesuai KTP" col="2" colspan="2">
+                            <field name="street"/>
+                            <field name="street2" string="RT/RW" />
+                        </group>
+                        <group col="4" colspan="4">    
+                            <field name="propinsi_id"/>
+                            <field name="kota_id" domain="[('propinsi_id','=',propinsi_id)]"/>
+                            <field name="kecamatan_id" domain="[('kota_id','=',kota_id)]"/>
+                            <field name="desa_id" domain="[('kecamatan_id','=',kecamatan_id)]"/>
+                            <field name="city" invisible="1"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                        </group>    
+                        <group>
+                            <field name="tg_sesuai_ktp" widget="radio"/>
+                        </group>
+                        <group string="Alamat Tinggal" attrs="{'invisible':[('tg_sesuai_ktp','=','1')]}" col="2" colspan="4" >
+                            <field name="tg_street"/>
+                            <field name="tg_street2" string="RT/RW" />
+                        </group>
+                        <group attrs="{'invisible':[('tg_sesuai_ktp','=','1')]}"  col="4" colspan="4">    
+                            <field name="tg_propinsi_id"/>
+                            <field name="tg_kota_id" domain="[('propinsi_id','=',tg_propinsi_id)]"/>
+                            <field name="tg_kecamatan_id" domain="[('kota_id','=',tg_kota_id)]"/>
+                            <field name="tg_desa_id" domain="[('kecamatan_id','=',tg_kecamatan_id)]"/>
+                        </group>                                
+                        <group>
+
+                            <field name="murobhi" options="{'no_create_edit':True, 'no_create':True}"/>
+                            <field name="amanah_struktural" />
+                            <field name="jabatan_struktural" />
+                            <field name="amanah_masyarakat" />
+                            <field name="jabatan_masyarakat" />
+                            <field name="ada_kta" widget="radio"/>
+                            <field name="no_kta" attrs="{'readonly':[('ada_kta','=','0')]}" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="pekerjaan_id" />
+                            <field name="pendidikan_id" />
+                        </group>
+
+                        <group>
+                            <field name="last_jenjang"/>
+                            <field name="tarbiyah1_ids" attrs="{'invisible':[('last_jenjang','=','')]}" domain="[('jenjang_id.kategori','=','pendukung')]" >
+                                <tree editable="bottom" limit="2" >
+                                    <field name="jenjang_id" domain="[('kategori','=','pendukung')]" options="{'no_create_edit':True, 'no_create':True}"/>
+                                    <field name="tanggal"/>
+                                    <field name="anggota_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <field name="tarbiyah2_ids" attrs="{'invisible':[('last_jenjang','in',('','pendukung'))]}" domain="[('jenjang_id.kategori','=','penggerak')]">
+                                <tree editable="bottom" limit="2">
+                                    <field name="jenjang_id" domain="[('kategori','=','penggerak')]" options="{'no_create_edit':True, 'no_create':True}"/>
+                                    <field name="tanggal"/>
+                                    <field name="anggota_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <field name="tarbiyah3_ids" attrs="{'invisible':[('last_jenjang','in',('','pendukung','penggerak'))]}" domain="[('jenjang_id.kategori','=','pelopor')]">
+                                <tree editable="bottom" limit="2">
+                                    <field name="jenjang_id" domain="[('kategori','=','pelopor')]" options="{'no_create_edit':True, 'no_create':True}"/>
+                                    <field name="tanggal"/>
+                                    <field name="anggota_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <!-- <field name="tarbiyah3_ids" attrs="{'invisible':[('last_jenjang','in',('','pendukung','penggerak'))]}" domain="[('jenjang_id.kategori','=','pelopor')]"/> -->
+
+                        </group>
+                        <notebook>
+                            <page string="Keluarga Inti" attrs="{'invisible':[('status_kawin','=','belum menikah')]}">
+                                <group col="4" colspan="4">
+                                    <field name="spouse_nama"/>
+                                    <field name="spouse_jns_kelamin"/>
+                                    <field name="spouse_tmp_lahir"/>
+                                    <field name="spouse_tgl_lahir"/>
+                                    <field name="spouse_mobile"/>
+                                    <field name="spouse_pendidikan_id"/>
+                                    <field name="spouse_pekerjaan_id"/>
+                                </group>
+                                <group>
+                                    <field name="spouse_last_jenjang"/>
+                                </group>
+                                <group string="Pendukung" attrs="{'invisible':[('spouse_last_jenjang','=','')]}">
+                                    <field name="sp_tarbiyah1a_date"/>
+                                    <field name="sp_tarbiyah1b_date"/>
+                                </group>
+                                <group string="Penggerak" attrs="{'invisible':[('spouse_last_jenjang','in',('','pendukung'))]}">
+                                    <field name="sp_tarbiyah2a_date"/>
+                                    <field name="sp_tarbiyah2b_date"/>
+                                </group>
+                                <group string="Pelopor" attrs="{'invisible':[('spouse_last_jenjang','in',('','pendukung','penggerak'))]}">
+                                    <field name="sp_tarbiyah3a_date"/>
+                                    <field name="sp_tarbiyah3b_date"/>
+                                    <field name="sp_tarbiyah3c_date"/>
+                                </group>
+                                <group>
+                                    <field name="keluarga_ids" string="Anak">
+                                        <tree editable="bottom">
+                                            <field name="name" string="Nama Anak"/>
+                                            <field name="jns_kelamin" string="Jenis Kelamin"/>
+                                            <field name="tmp_lahir" string="Tempat Lahir"/>
+                                            <field name="tgl_lahir" string="Tanggal Lahir"/>
+                                            <field name="anggota_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <!-- <page string="Tarbiyah">
+                                <field name="tarbiyah_ids"/>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- search -->
+        <record id="view_pks_anggota_search" model="ir.ui.view">
+            <field name="name">pks_anggota</field>
+            <field name="model">pks_anggota</field>
+            <field name="arch" type="xml">
+                <search string="Pks anggota">
+
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Nik" name="filter_by_nik" domain="[('nik','=','')]" />
+                    <filter string="Jns kelamin" name="filter_by_jns_kelamin" domain="[('jns_kelamin','=','')]" />
+                    <filter string="Tmp lahir" name="filter_by_tmp_lahir" domain="[('tmp_lahir','=','')]" />
+                    <filter string="Tgl lahir" name="filter_by_tgl_lahir" domain="[('tgl_lahir','=','')]" />
+                    <filter string="Status kawin" name="filter_by_status_kawin" domain="[('status_kawin','=','')]" />
+                    <filter string="Murobhi" name="filter_by_murobhi" domain="[('murobhi','=','')]" />
+                    <filter string="Amanah struktural" name="filter_by_amanah_struktural" domain="[('amanah_struktural','=','')]" />
+                    <filter string="Jabatan struktural" name="filter_by_jabatan_struktural" domain="[('jabatan_struktural','=','')]" />
+                    <filter string="Amanah masyarakat" name="filter_by_amanah_masyarakat" domain="[('amanah_masyarakat','=','')]" />
+                    <filter string="Jabatan masyarakat" name="filter_by_jabatan_masyarakat" domain="[('jabatan_masyarakat','=','')]" />
+                    <filter string="No kta" name="filter_by_no_kta" domain="[('no_kta','=','')]" />
+                    <field name="name" select="True"/>
+                    <field name="nik" select="True"/>
+                    <field name="jns_kelamin" select="True"/>
+                    <field name="tmp_lahir" select="True"/>
+                    <field name="tgl_lahir" select="True"/>
+                    <field name="status_kawin" select="True"/>
+                    <field name="murobhi" select="True"/>
+                    <field name="amanah_struktural" select="True"/>
+                    <field name="jabatan_struktural" select="True"/>
+                    <field name="amanah_masyarakat" select="True"/>
+                    <field name="jabatan_masyarakat" select="True"/>
+                    <field name="no_kta" select="True"/>
+                    <field name="pekerjaan_id" select="True"/>
+                    <field name="pendidikan_id" select="True"/>
+                    <group string="Group By..">
+                        <filter string="Pekerjaan" domain="[]" name="group_by_pekerjaan_id" context="{'group_by':'pekerjaan_id'}"/>
+                        <filter string="Pendidikan" domain="[]" name="group_by_pendidikan_id" context="{'group_by':'pendidikan_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- kanban , to show image, please add image_small in the model -->
+        <record id="view_pks_anggota_kanban" model="ir.ui.view" >
+            <field name="name">pks_anggota</field>
+            <field name="model">pks_anggota</field>
+            <field name="arch" type="xml">
+                <kanban version="7.0">
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="nik" />
+                    <field name="jns_kelamin" />
+                    <field name="tmp_lahir" />
+                    <field name="tgl_lahir" />
+                    <field name="status_kawin" />
+                    <field name="murobhi" />
+                    <field name="amanah_struktural" />
+                    <field name="jabatan_struktural" />
+                    <field name="amanah_masyarakat" />
+                    <field name="jabatan_masyarakat" />
+                    <field name="no_kta" />
+                    <field name="pekerjaan_id" />
+                    <field name="pendidikan_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                                <div class="oe_kanban_details">
+                                    <h4>
+                                        <a type="open"><field name="name"/></a>
+                                    </h4>
+                                    <ul>
+
+                                        <li>
+                                            <span class="text-muted">Pekerjaan</span> <field name="pekerjaan_id"></field>
+                                        </li>
+
+
+                                        <li>
+                                            <span class="text-muted">Pendidikan</span> <field name="pendidikan_id"></field>
+                                        </li>
+
+                                        <li>
+                                            <span class="text-muted">Tgl lahir</span> <field name="tgl_lahir"></field>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- calendar if a date field exists -->
+        <record id="view_pks_anggota_cal" model="ir.ui.view">
+            <field name="name">pks_anggota_undefined_cal</field>
+            <field name="model">pks_anggota</field>
+            <field name="arch" type="xml">
+                <calendar string="Tanggal Lahir Anggota" date_start="tgl_lahir">
+                    <field name="name" />
+                </calendar>
+            </field>
+        </record>
+        <!-- action window -->
+        <record id="action_pks_anggota" model="ir.actions.act_window">
+            <field name="name">Pendataan Anggota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pks_anggota</field>
+            <field name="view_mode">kanban,tree,form,calendar</field>
+            <field name="context">{"search_default_fieldname":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Click to add a new Pks anggota
+                </p><p>
+                Click the Create button to add a new Pks anggota
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_pks_anggota" name="Data Anggota" parent="anggota_pks_pendataan_menu" action="action_pks_anggota" sequence="10"/>
+    </data>
+</odoo>
