@@ -61,7 +61,7 @@ class pks_anggota(models.Model):
 
 
     spouse_nama         = fields.Char('Nama Suami/Istri')
-    spouse_jns_kelamin  = fields.Selection(selection=[('laki-laki','Laki-Laki'),('perempuan','Perempuan')],  string="Jenis kelamin", help="")
+    spouse_jns_kelamin  = fields.Selection(selection=[('laki-laki','Laki-Laki'),('perempuan','Perempuan')],  string="Jns kelamin", help="")
     spouse_tmp_lahir    = fields.Char( string="Tmp lahir",  help="")
     spouse_tgl_lahir   = fields.Date( string="Tgl lahir",  help="")
     spouse_mobile       = fields.Char(string='Nomor HP')
