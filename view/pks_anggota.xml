@@ -77,11 +77,12 @@
                             <field name="tg_kecamatan_id" domain="[('kota_id','=',tg_kota_id)]"/>
                             <field name="tg_desa_id" domain="[('kecamatan_id','=',tg_kecamatan_id)]"/>
                         </group>                                
-                        <group>
+                        <group col="4" colspan="4">
 
                             <field name="murobhi" options="{'no_create_edit':True, 'no_create':True}"/>
                             <field name="amanah_struktural" />
                             <field name="jabatan_struktural" />
+                            <field name="jabatan_yayasan"/>
                             <field name="amanah_masyarakat" />
                             <field name="jabatan_masyarakat" />
                             <field name="ada_kta" widget="radio"/>
@@ -279,9 +280,9 @@
             <field name="context">{"search_default_fieldname":1}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                Click to add a new Pks anggota
+                Klik untuk menambah data anggota PKS
                 </p><p>
-                Click the Create button to add a new Pks anggota
+                Klik tombol ADD / BUAT - untuk menambah data anggota PKS
                 </p>
             </field>
         </record>

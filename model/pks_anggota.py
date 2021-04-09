@@ -39,6 +39,7 @@ class pks_anggota(models.Model):
     murobhi             = fields.Many2one(comodel_name="pks_anggota",  string="Murobhi",  help="")
     amanah_struktural   = fields.Selection(selection=[('dpp','DPP'),('dpw','DPW'),('dpd','DPD'),('dpc','DPC'),('dpra','DPRa')],  string="Amanah Struktural",  help="")
     jabatan_struktural  = fields.Char( string="Jabatan Struktural",  help="")
+    jabatan_yayasan     = fields.Char(string='Jabatan Yayasan', help='')
     amanah_masyarakat   = fields.Boolean( string="Amanah Kemasyarakatan",  help="")
     jabatan_masyarakat  = fields.Char( string="Jabatan Masyarakat",  help="")
     ada_kta             = fields.Selection(string='Sudah Ber KTA', selection=[('1', 'YA'), ('0', 'TIDAK/BELUM'),], required=True, default='0')
@@ -46,15 +47,17 @@ class pks_anggota(models.Model):
 
     #Jenjang Tarbiyah
     last_jenjang        = fields.Selection(string='Jenjang Tarbiyah', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),])
+    #jenjang_tarbiyah    = fields.Many2one(comodel_name='jenjang_tarbiyah', string='Jenjang Tarbiyah')
+    
     # tarbiyah1           = fields.Char(string='')
     
-    tarbiyah1_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Pendukung", domain=[('jenjang_id.kategori','=','pendukung')],  help="")
-    tarbiyah2_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Penggerak", domain=[('jenjang_id.kategori','=','penggerak')],  help="")
-    tarbiyah3_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Pelopor", domain=[('jenjang_id.kategori','=','pelopor')],  help="")
+    tarbiyah1_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Pendukung", domain=[('jenjang_id.kategori','=','pendukung')], ondelete='cascade',  help="")
+    tarbiyah2_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Penggerak", domain=[('jenjang_id.kategori','=','penggerak')], ondelete='cascade', help="")
+    tarbiyah3_ids       = fields.One2many(comodel_name="tarbiyah",  inverse_name="anggota_id",  string="Jenjang Pelopor", domain=[('jenjang_id.kategori','=','pelopor')], ondelete='cascade', help="")
 
     pekerjaan_id        = fields.Many2one(comodel_name="ref_pekerjaan",  string="Pekerjaan",  help="")
     pendidikan_id       = fields.Many2one(comodel_name="ref_pendidikan",  string="Pendidikan",  help="")
-    keluarga_ids        = fields.One2many(comodel_name="pks_keluarga",  inverse_name="anggota_id",  string="Keluarga",  help="")
+    keluarga_ids        = fields.One2many(comodel_name="pks_keluarga",  inverse_name="anggota_id",  string="Keluarga", ondelete='cascade', help="")
 
 
     spouse_nama         = fields.Char('Nama Suami/Istri')
