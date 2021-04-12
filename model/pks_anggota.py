@@ -46,8 +46,8 @@ class pks_anggota(models.Model):
     no_kta              = fields.Char( string="No KTA",  help="")
 
     #Jenjang Tarbiyah
-    last_jenjang        = fields.Selection(string='Jenjang Tarbiyah', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),])
-    #jenjang_tarbiyah    = fields.Many2one(comodel_name='jenjang_tarbiyah', string='Jenjang Tarbiyah')
+    last_jenjang        = fields.Selection(string='Tarbiyah', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),])
+    jenjang_tarbiyah    = fields.Many2one(comodel_name='jenjang_tarbiyah', string='Jenjang Anggota')
     
     # tarbiyah1           = fields.Char(string='')
     

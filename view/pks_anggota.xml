@@ -95,6 +95,7 @@
 
                         <group>
                             <field name="last_jenjang"/>
+                            <field name="jenjang_tarbiyah"/>
                             <field name="tarbiyah1_ids" attrs="{'invisible':[('last_jenjang','=','')]}" domain="[('jenjang_id.kategori','=','pendukung')]" >
                                 <tree editable="bottom" limit="2" >
                                     <field name="jenjang_id" domain="[('kategori','=','pendukung')]" options="{'no_create_edit':True, 'no_create':True}"/>
