@@ -27,3 +27,27 @@ class pks_jenjang_tarbiyah(models.Model):
     kategori            = fields.Selection(string='Kategori', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),], required=True, default="pendukung")
     _sql_constraints    = [('jenjang_tarbiyah_uniq', 'unique(name)', 'Data Jenjang Tarbiyah sudah ada !')]
     
+class kelas_tarbiyah(models.Model):
+    _name               = 'kelas_tarbiyah'
+    _description        = 'Kelas / Kelompok Tarbiyah UPA'
+
+    name                = fields.Char(string='Nama Liqo')
+    keterangan          = fields.Char(string='Keterangan')
+    
+    murobhi             = fields.Many2one(comodel_name='pks_anggota', string='Murobhi')
+    tarbiyah_ids        = fields.Many2many('pks_anggota','anggota_tarbiyah','anggota_id','partner_id','Anggota Tarbiyah')
+
+    _sql_constraints    = [('kelas_tarbiyah_uniq', 'unique(name)', 'Nama Tarbiyah Liqo tersebut sudah ada !')]
+    
+    #@api.one
+    def update_halaqoh(self):
+        for x in self.tarbiyah_ids:
+            x.write({'halaqoh_id': self.id, 
+                'murobhi' : self.murobhi
+            })
+        return True
+
+
+    
+
+    

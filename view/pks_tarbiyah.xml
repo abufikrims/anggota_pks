@@ -81,6 +81,86 @@
             </field>
         </record>
 
+        <!-- Kelas Tarbiyah -->
+        <!-- kelas_tarbiyah tree view -->
+        <record id="kelas_tarbiyah_view_tree" model="ir.ui.view">
+            <field name="name">kelas_tarbiyah.view.tree</field>
+            <field name="model">kelas_tarbiyah</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="murobhi"/>
+                    <field name="keterangan"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+        <!-- kelas_tarbiyah form view -->
+        <record id="kelas_tarbiyah_view_form" model="ir.ui.view">
+            <field name="name">kelas_tarbiyah.view.form</field>
+            <field name="model">kelas_tarbiyah</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="update_halaqoh" type="object" string="Update" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Nama Liqo"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <field name="murobhi" options="{'no_create_edit':True, 'no_create':True, 'no_open': True}"/>
+                            <field name="keterangan"/>
+                        </group>
+                        <notebook colspan="5">
+							<page string="Anggota Tarbiyah">
+								<field colspan="4" name="tarbiyah_ids" >
+									<tree>
+										<field name="no_kta"/>
+										<field name="name"/>
+										<field name="last_jenjang"/>
+                                        <field name="jenjang_tarbiyah"/>
+                                        <field name="street" string="Alamat"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- kelas_tarbiyah search view -->
+        <record id="kelas_tarbiyah_view_search" model="ir.ui.view">
+            <field name="name">kelas_tarbiyah.view.search</field>
+            <field name="model">kelas_tarbiyah</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <field name="name" select="True"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- kelas_tarbiyah action window -->
+        <record id="kelas_tarbiyah_action" model="ir.actions.act_window">
+            <field name="name">Pembagian Kelas Tarbiyah Liqo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">kelas_tarbiyah</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
         <menuitem id="menu_tarbiyah" name="Pks tarbiyah" parent="anggota_pks_config_menu" action="action_tarbiyah" sequence="40"/>
+        <menuitem id="menu_kelas_tarbiyah" name="Pembagian Liqo" parent="anggota_pks_config_menu" action="kelas_tarbiyah_action" sequence="5"/>
     </data>
 </odoo>

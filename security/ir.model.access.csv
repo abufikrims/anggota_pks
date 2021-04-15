@@ -27,3 +27,6 @@ access_user_tarbiyah,access_user_tarbiyah,model_tarbiyah,anggota_pks.group_pks_u
 access_manager_tarbiyah,access_manager_tarbiyah,model_tarbiyah,anggota_pks.group_pks_manager,1,1,1,1
 access_user_jenjang_tarbiyah,access_user_jenjang_tarbiyah,model_jenjang_tarbiyah,anggota_pks.group_pks_user,1,0,0,0
 access_manager_jenjang_tarbiyah,access_manager_jenjang_tarbiyah,model_jenjang_tarbiyah,anggota_pks.group_pks_manager,1,1,1,1
+
+access_user_kelas_tarbiyah,access_user_kelas_tarbiyah,model_kelas_tarbiyah,anggota_pks.group_pks_user,1,0,0,0
+access_manager_kelas_tarbiyah,access_manager_kelas_tarbiyah,model_kelas_tarbiyah,anggota_pks.group_pks_manager,1,1,1,1

@@ -36,7 +36,7 @@ class pks_anggota(models.Model):
     tg_kecamatan_id     = fields.Many2one(comodel_name='ref.kecamatan', string='Kecamatan')
     tg_desa_id          = fields.Many2one(comodel_name='ref.desa', string='Desa/Kelurahan')
 
-    murobhi             = fields.Many2one(comodel_name="pks_anggota",  string="Murobhi",  help="")
+    
     amanah_struktural   = fields.Selection(selection=[('dpp','DPP'),('dpw','DPW'),('dpd','DPD'),('dpc','DPC'),('dpra','DPRa')],  string="Amanah Struktural",  help="")
     jabatan_struktural  = fields.Char( string="Jabatan Struktural",  help="")
     jabatan_yayasan     = fields.Char(string='Jabatan Yayasan', help='')
@@ -44,6 +44,10 @@ class pks_anggota(models.Model):
     jabatan_masyarakat  = fields.Char( string="Jabatan Masyarakat",  help="")
     ada_kta             = fields.Selection(string='Sudah Ber KTA', selection=[('1', 'YA'), ('0', 'TIDAK/BELUM'),], required=True, default='0')
     no_kta              = fields.Char( string="No KTA",  help="")
+
+    # Data Liqo' / UPA
+    halaqoh_id          = fields.Many2one(comodel_name='kelas_tarbiyah', string='Nama Liqo/UPPA', readonly=True)
+    murobhi             = fields.Many2one(comodel_name="pks_anggota",  string="Murobhi",  help="")
 
     #Jenjang Tarbiyah
     last_jenjang        = fields.Selection(string='Tarbiyah', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),])
