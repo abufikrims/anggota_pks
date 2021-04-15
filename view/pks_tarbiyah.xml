@@ -122,6 +122,7 @@
 										<field name="name"/>
 										<field name="last_jenjang"/>
                                         <field name="jenjang_tarbiyah"/>
+                                        <field name="mobile"/>
                                         <field name="street" string="Alamat"/>
 									</tree>
 								</field>

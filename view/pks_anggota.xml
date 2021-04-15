@@ -78,9 +78,10 @@
                             <field name="tg_desa_id" domain="[('kecamatan_id','=',tg_kecamatan_id)]"/>
                         </group>                                
                         <group col="4" colspan="4">
-
                             <field name="murobhi" options="{'no_open': True}"/>
                             <field name="halaqoh_id"/>
+                        </group>                               
+                        <group col="4" colspan="4">
                             <field name="amanah_struktural" />
                             <field name="jabatan_struktural" />
                             <field name="jabatan_yayasan"/>
