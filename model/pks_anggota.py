@@ -47,7 +47,7 @@ class pks_anggota(models.Model):
 
     # Data Liqo' / UPA
     halaqoh_id          = fields.Many2one(comodel_name='kelas_tarbiyah', string='Nama Liqo/UPPA', readonly=True)
-    murobhi             = fields.Many2one(comodel_name="pks_anggota",  string="Murobhi",  help="")
+    murobhi             = fields.Many2one(comodel_name="pks_anggota",  string="Murobhi",  help="", readonly=True)
 
     #Jenjang Tarbiyah
     last_jenjang        = fields.Selection(string='Tarbiyah', selection=[('pendukung', 'Pendukung'), ('penggerak', 'Penggerak'),('pelopor', 'Pelopor'),])

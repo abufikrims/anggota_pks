@@ -79,7 +79,7 @@
                         </group>                                
                         <group col="4" colspan="4">
 
-                            <field name="murobhi" options="{'no_create_edit':True, 'no_create':True}"/>
+                            <field name="murobhi" options="{'no_open': True}"/>
                             <field name="halaqoh_id"/>
                             <field name="amanah_struktural" />
                             <field name="jabatan_struktural" />
