@@ -8,7 +8,7 @@
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Pks anggota">
+                <tree string="Pks anggota" default_order="name asc">
                     <field name="name" />
                     <field name="nik" />
                     <field name="jns_kelamin" />
@@ -224,7 +224,7 @@
             <field name="name">pks_anggota</field>
             <field name="model">pks_anggota</field>
             <field name="arch" type="xml">
-                <kanban version="7.0">
+                <kanban version="7.0" default_order="name asc">
                     <field name="id" />
                     <field name="name" />
                     <field name="nik" />
