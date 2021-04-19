@@ -282,8 +282,14 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Desas">
-                                <field name="desa_ids"/>
+                            <page string="Desa">
+                                <field name="desa_ids">
+                                    <tree editable="bottom" options="{'no_create_edit':True, 'no_create':True, 'no_open': True}">
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="kecamatan_id"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

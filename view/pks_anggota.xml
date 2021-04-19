@@ -39,8 +39,9 @@
                                 <!--field name="detail_ids" invisible="1"/-->
                             <!--/button-->
                         </div>
+                        <field name="image_1920" widget="image" class="oe_image_custom" style="width: 160px; height: 200px;" />
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only" string="Pks anggota Name"/>
+                            <label for="name" class="oe_edit_only" string="Nama Lengkap Anggota"/>
                             <h1><field name="name"/></h1>
                         </div>
                         
@@ -77,7 +78,7 @@
                             <field name="tg_kecamatan_id" domain="[('kota_id','=',tg_kota_id)]"/>
                             <field name="tg_desa_id" domain="[('kecamatan_id','=',tg_kecamatan_id)]"/>
                         </group>                                
-                        <group col="4" colspan="4">
+                        <group>
                             <field name="murobhi" options="{'no_open': True}"/>
                             <field name="halaqoh_id"/>
                         </group>                               
@@ -165,6 +166,11 @@
                                 <field name="tarbiyah_ids"/>
                             </page> -->
                         </notebook>
+                        <group string="Dokumen KTP">
+                             <field name="dokumen_ktp" filename="dokumen_name"/>
+                             <field name="dokumen_name" editable="0"/>
+                             <field name="dokumen_berlaku"/>
+                        </group>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
@@ -235,9 +241,14 @@
                     <field name="no_kta" />
                     <field name="pekerjaan_id" />
                     <field name="pendidikan_id" />
+                    <field name="image_256"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <t t-if="record.image_256.raw_value">
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('pks_anggota','image_256', record.id.raw_value)}')"/>
+                                    
+                                </t>
                                 <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open"><field name="name"/></a>

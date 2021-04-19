@@ -116,8 +116,8 @@
                         </group>
                         <notebook colspan="5">
 							<page string="Anggota Tarbiyah">
-								<field colspan="4" name="tarbiyah_ids" >
-									<tree>
+								<field name="tarbiyah_ids">
+									<tree >
 										<field name="no_kta"/>
 										<field name="name"/>
 										<field name="last_jenjang"/>
