@@ -169,7 +169,6 @@
                         <group string="Dokumen KTP">
                              <field name="dokumen_ktp" filename="dokumen_name"/>
                              <field name="dokumen_name" editable="0"/>
-                             <field name="dokumen_berlaku"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
