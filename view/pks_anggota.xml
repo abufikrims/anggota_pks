@@ -68,11 +68,11 @@
                         <group>
                             <field name="tg_sesuai_ktp" widget="radio"/>
                         </group>
-                        <group string="Alamat Tinggal" attrs="{'invisible':[('tg_sesuai_ktp','=','1')]}" col="2" colspan="4" >
+                        <group string="Alamat Tinggal" col="2" colspan="4" >
                             <field name="tg_street"/>
                             <field name="tg_street2" string="RT/RW" />
                         </group>
-                        <group attrs="{'invisible':[('tg_sesuai_ktp','=','1')]}"  col="4" colspan="4">    
+                        <group  col="4" colspan="4">    
                             <field name="tg_propinsi_id"/>
                             <field name="tg_kota_id" domain="[('propinsi_id','=',tg_propinsi_id)]"/>
                             <field name="tg_kecamatan_id" domain="[('kota_id','=',tg_kota_id)]"/>
