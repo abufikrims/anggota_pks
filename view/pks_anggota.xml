@@ -8,7 +8,7 @@
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Pks anggota" default_order="name asc">
+                <tree string="Anggota PKS" default_order="name asc">
                     <field name="name" />
                     <field name="nik" />
                     <field name="jns_kelamin" />
@@ -98,7 +98,7 @@
 
                         <group>
                             <field name="last_jenjang"/>
-                            <field name="jenjang_tarbiyah"/>
+                            <field name="jenjang_tarbiyah" domain="[('kategori','=',last_jenjang)]"/>
                             <field name="tarbiyah1_ids" attrs="{'invisible':[('last_jenjang','=','')]}" domain="[('jenjang_id.kategori','=','pendukung')]" >
                                 <tree editable="bottom" limit="2" >
                                     <field name="jenjang_id" domain="[('kategori','=','pendukung')]" options="{'no_create_edit':True, 'no_create':True}"/>
@@ -157,6 +157,7 @@
                                             <field name="jns_kelamin" string="Jenis Kelamin"/>
                                             <field name="tmp_lahir" string="Tempat Lahir"/>
                                             <field name="tgl_lahir" string="Tanggal Lahir"/>
+                                            <field name="jenjang_id"/>
                                             <field name="anggota_id" invisible="1"/>
                                         </tree>
                                     </field>

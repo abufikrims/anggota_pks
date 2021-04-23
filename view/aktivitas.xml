@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- absensi_liqo tree view -->
+        <record id="absensi_liqo_view_tree" model="ir.ui.view">
+            <field name="name">absensi_liqo.view.tree</field>
+            <field name="model">absensi_liqo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="halaqoh_id"/>
+                    <field name="murobhi"/>
+                    <field name="state"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+        <!-- absensi_liqo form view -->
+        <record id="absensi_liqo_view_form" model="ir.ui.view">
+            <field name="name">absensi_liqo.view.form</field>
+            <field name="model">absensi_liqo</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button string="Proses" name="action_proses" type="object" class="oe_highlight" state="proses" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                        <button string="Selesai" name="action_done" type="object" class="oe_highlight" state="done" attrs="{'invisible': [('state', 'not in', ['proses'])]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,proses,done" />
+                    </header>
+                    <sheet>
+                        <!-- <group col="4" colspan="4">
+                            <field name="name"/>
+                        </group> -->
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Tanggal Liqo"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="halaqoh_id"/>
+                            <field name="murobhi"/>
+                            <field name="amin_liqo"/>
+                            <field name="suun_maal"/>
+                        </group>
+                        <group>
+                            <field name="keterangan"/>
+                        </group>
+                        <notebook colspan="5">
+                            <page name="daftar_hadir" string="Daftar Hadir">
+                                <field name="absensi_lines" colspan="4" nolabel="1" widget="one2many_list">
+                                    <tree string="" create="0" editable="bottom">
+                                        <field name="name" readonly="1" force_save="1"/>
+                                        <field name="no_kta"/>
+                                        <field name="kehadiran"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- absensi_liqo search view -->
+        <record id="absensi_liqo_view_search" model="ir.ui.view">
+            <field name="name">absensi_liqo.view.search</field>
+            <field name="model">absensi_liqo</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
+                    <filter string="Halaqoh" name="filter_by_halaqoh" domain="[('halaqoh_id','=','')]" />
+                    <filter string="Murobhi" name="filter_by_murobhi" domain="[('murobhi','like','')]" />
+                    <field name="name" select="True"/>
+                    <field name="halaqoh_id" select="True"/>
+                    <field name="murobhi" select="True"/>
+                    <group string="Group By..">
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- absensi_liqo action window -->
+        <record id="absensi_liqo_action" model="ir.actions.act_window">
+            <field name="name">Absensi Kehadiran Liqo</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">absensi_liqo</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- <record id="seq_absensi_liqo_new" model="ir.sequence">
+            <field name="name">No Referensi</field>
+            <field name="code">absensi_liqo</field>
+            <field name="prefix">KI/%(y)s.%(month)s/</field>
+            <field name="padding">4</field>
+        </record> -->
+
+        <!-- absen_liqo.line tree view -->
+        <record id="absen_liqo_line_view_tree" model="ir.ui.view">
+            <field name="name">absen_liqo.line.view.tree</field>
+            <field name="model">absen_liqo.line</field>
+            <field name="arch" type="xml">
+                <tree duplicate="0" create="false" edit="false" delete="false">
+                    <!-- Add your fields here -->
+                    <field name="absen_line_id"/>
+                    <field name="name"/>
+                    <field name="no_kta"/>
+                    <field name="halaqoh_id"/>
+                    <field name="kehadiran"/>                   
+                </tree>
+            </field>
+        </record>
+
+        <!-- absen_liqo.line form view -->
+        <record id="absen_liqo_line_view_form" model="ir.ui.view">
+            <field name="name">absen_liqo.line.view.form</field>
+            <field name="model">absen_liqo.line</field>
+            <field name="arch" type="xml">
+                <form string="Detail Kehadiran" duplicate="0" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="no_kta"/>
+                            <field name="halaqoh_id"/>
+                            <field name="kehadiran"/>
+                            <field name="keterangan"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- absen_liqo.line action window -->
+        <record id="absen_liqo_line_action" model="ir.actions.act_window">
+            <field name="name">Detail Kehadiran</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">absen_liqo.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="liqo_menu_categ" name="Liqo Tarbiyah" parent="anggota_pks_aktivitas_menu" sequence="10"/>
+        <menuitem id="absensi_liqo_menu_act" name="Absensi Liqo" parent="liqo_menu_categ" action="absensi_liqo_action" sequence="10"/>
+        <menuitem id="absensi_liqo_line_menu_act" name="Detail Kehadiran" parent="liqo_menu_categ" action="absen_liqo_line_action" sequence="20"/>
+    </data>
+</odoo>

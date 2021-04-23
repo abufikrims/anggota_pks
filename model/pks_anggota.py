@@ -89,6 +89,10 @@ class pks_anggota(models.Model):
     def _onchange_kota_id(self):
         self.city = self.kota_id.name
 
+    @api.onchange('last_jenjang')
+    def _onchange_last_jenjang(self):
+        self.jenjang_tarbiyah = ''
+
     @api.onchange('tg_sesuai_ktp')
     def _onchange_tg_sma_ktp(self):
         if (self.tg_sesuai_ktp) and (self.tg_sesuai_ktp == '1'):

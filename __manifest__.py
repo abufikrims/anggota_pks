@@ -36,6 +36,7 @@ Fitur-Fitur
 		"view/pks_keluarga.xml",
 		"view/jenjang_tarbiyah.xml",
 		"view/ref_data_wilayah.xml",
+		"view/aktivitas.xml",
 		"report/pks_anggota.xml",
 		"report/pekerjaan.xml",
 		"report/pendidikan.xml",

@@ -8,11 +8,12 @@
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Pks keluarga">
+                <tree string="Anggota Keluarga PKS">
                     <field name="name" />
                     <field name="jns_kelamin" />
                     <field name="tmp_lahir" />
                     <field name="tgl_lahir" />
+                    <field name="jenjang_id"/>
                     <field name="anggota_id" />
                 </tree>
             </field>
@@ -24,7 +25,7 @@
             <field name="type">form</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Pks keluarga">
+                <form string="Anggota Keluarga PKS">
                     <header>
                     </header>
                     <sheet>
@@ -35,18 +36,29 @@
                             <!--/button-->
                         </div>
                         <div class="oe_title">
-                            <label for="name" class="oe_edit_only" string="Pks keluarga Name"/>
+                            <label for="name" class="oe_edit_only" string="Nama Anak"/>
                             <h1><field name="name"/></h1>
                         </div>
                         <group>
                             <group>
                                 <field name="jns_kelamin" />
                                 <field name="tmp_lahir" />
-                                <field name="tgl_lahir" />
                             </group>
                             <group>
-                                <field name="anggota_id" />
+                                <field name="tgl_lahir" />
+                                <field name="anggota_id" string="Nama Orang Tua"/>
                             </group>
+                        </group>
+                        <group>
+                            <field name="alamat"/>
+                            <field name="alamat2"/>
+                            <field name="desa_id"/>
+                            <field name="kecamatan_id"/>
+                            <field name="kota_id"/>
+                            <field name="propinsi_id"/>
+                        </group>
+                        <group>
+                            <field name="jenjang_id"/>
                         </group>
                         <notebook>
                         </notebook>

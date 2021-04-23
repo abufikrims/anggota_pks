@@ -35,6 +35,9 @@ class kelas_tarbiyah(models.Model):
     keterangan          = fields.Char(string='Keterangan')
     
     murobhi             = fields.Many2one(comodel_name='pks_anggota', string='Murobhi')
+    amin_liqo           = fields.Many2one(comodel_name='pks_anggota', string="Amin Liqo'")
+    suun_maal           = fields.Many2one(comodel_name='pks_anggota', string="Suun Maal")
+    
     tarbiyah_ids        = fields.Many2many('pks_anggota','anggota_tarbiyah','anggota_id','partner_id','Anggota Tarbiyah')
 
     _sql_constraints    = [('kelas_tarbiyah_uniq', 'unique(name)', 'Nama Tarbiyah Liqo tersebut sudah ada !')]
