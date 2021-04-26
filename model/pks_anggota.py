@@ -107,5 +107,26 @@ class pks_anggota(models.Model):
     def _onchange_ada_kta(self):
         if self.ada_kta == '0':
             self.no_kta = ''
-        
+    
+    # Open tampilan Aktivitas Liqo
+    
+    def open_aktivitas_liqo(self):
+        return {
+            'name'  : _('Aktivitas Liqo'),
+            'domain' : [('name','=',self.id)],
+            'view_type' : 'form',
+            'res_model' : 'absen_liqo.line',
+            'view_id' : False,
+            'view_mode': 'tree,form',
+            'type':'ir.actions.act_window'
+        }
+    
+    def get_aktivitas_liqo_count(self):
+        count = self.env['absen_liqo.line'].search_count([('name','=', self.id)])
+        self.aktivitas_liqo_count = count
+    
+    # Field Jumlah Aktivitas
+    aktivitas_liqo_count        = fields.Integer(string='Liqo Tarbiyah', compute='get_aktivitas_liqo_count')
+
+    
     
