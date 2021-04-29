@@ -151,6 +151,6 @@
             </field>
         </record>
 
-        <menuitem id="menu_pks_keluarga" name="Keluarga Anggota PKS" parent="anggota_pks_pendataan_menu" action="action_pks_keluarga" sequence="60"/>
+        <menuitem id="menu_pks_keluarga" name="Keluarga Anggota PKS" parent="anggota_pks_pendataan_menu" action="action_pks_keluarga" sequence="30"/>
     </data>
 </odoo>

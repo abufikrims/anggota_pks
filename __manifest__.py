@@ -37,6 +37,7 @@ Fitur-Fitur
 		"view/jenjang_tarbiyah.xml",
 		"view/ref_data_wilayah.xml",
 		"view/aktivitas.xml",
+		"view/struktural.xml",
 		"report/pks_anggota.xml",
 		"report/pekerjaan.xml",
 		"report/pendidikan.xml",
