@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+
+        <!-- Inherit Companies -->
+        <!-- res.company inherit form view -->
+        <record id="view_company_inherit" model="ir.ui.view">
+            <field name="name">res.company.inherit.view.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <!-- Add your xpath here -->
+                <!-- Add your xpath here -->
+                <xpath expr="//field[@name='website']" position="after">
+                   <field name="propinsi_id"/>
+                   <field name="kota_id" domain="[('propinsi_id','=',propinsi_id)]"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- struktural_pks tree view -->
+        <record id="struktural_pks_view_tree" model="ir.ui.view">
+            <field name="name">struktural_pks.view.tree</field>
+            <field name="model">struktural_pks</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="kota_id"/>
+                    <field name="kecamatan_id"/>
+                    <field name="ketua"/>
+                    <field name="sekretaris"/>
+                    <field name="bendahara"/>
+                    
+                </tree>
+            </field>
+        </record>
+        
+        <!-- struktural_pks form view -->
+        <record id="struktural_pks_view_form" model="ir.ui.view">
+            <field name="name">struktural_pks.view.form</field>
+            <field name="model">struktural_pks</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="Struktur Pengurus DPC"/>
+                            <h1><field name="name" force_save="1"/></h1>
+                        </div>
+                        <field name="kota_id" invisible="1"/>
+                        <group>
+                            <field name="kecamatan_id" domain="[('kota_id','=',kota_id)]" options="{'no_create_edit':True, 'no_create':True, 'no_open':True}"/>
+                        </group>
+                        <group col="4" colspan="4"> 
+                            <!-- Add your fields here -->
+                            <field name="ketua"/>
+                            <field name="waketua"/>
+                            <field name="sekretaris"/>
+                            <field name="wasekretaris"/>
+                            <field name="bendahara"/>
+                            <field name="wabendahara"/>
+                            
+                        </group>
+                        <group>
+                            <field name="struktural_lines" string="Seksi-Seksi">
+                                <tree editable="bottom">
+                                    <field name="name"/> 
+                                    <field name="jabatan_sie"/>
+                                    <field name="anggota_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- struktural_pks action window -->
+        <record id="struktural_pks_action" model="ir.actions.act_window">
+            <field name="name">Struktur Organisasi DPC</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">struktural_pks</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="struktural_pks_menu_categ" name="Organisasi" parent="anggota_pks_pendataan_menu" sequence="60"/>
+        <menuitem id="struktural_pks_menu_act" name="Struktural PKS" parent="struktural_pks_menu_categ" action="struktural_pks_action" sequence="10"/>
+    </data>
+</odoo>
