@@ -128,5 +128,41 @@ class pks_anggota(models.Model):
     # Field Jumlah Aktivitas
     aktivitas_liqo_count        = fields.Integer(string='Liqo Tarbiyah', compute='get_aktivitas_liqo_count')
 
+    def get_saldo_iwai(self):
+        saldo_iwai                  = self.env['tabungan_pks'].search([('anggota_id','=',self.id),('state','not in',['draft','cancel']),('jenis_tabungan','=','iwai')])
+        self.saldo_tabungan_iwai    = sum((item.amount_in - item.amount_out) for item in saldo_iwai)
+
+    def open_tabungan_iwai(self):
+        return {
+            'name'  : _('Tabungan IWAI'),
+            'domain' : [('anggota_id','=',self.id),('jenis_tabungan','=','iwai')],
+            'view_type' : 'form',
+            'res_model' : 'tabungan_pks',
+            'view_id' : False,
+            'view_mode': 'tree,form',
+            'type':'ir.actions.act_window'
+        }
+
+    # Field Saldo Tabungan
+    saldo_tabungan_iwai         = fields.Float(string='Saldo IWAI', compute='get_saldo_iwai')
+    
+    def get_saldo_tapilu(self):
+        saldo_tapilu                 = self.env['tabungan_pks'].search([('anggota_id','=',self.id),('state','not in',['draft','cancel']),('jenis_tabungan','=','tapilu')])
+        self.saldo_tabungan_tapilu    = sum((item.amount_in - item.amount_out) for item in saldo_tapilu)
+
+    def open_tabungan_tapilu(self):
+        return {
+            'name'  : _('Tabungan PEMILU'),
+            'domain' : [('anggota_id','=',self.id),('jenis_tabungan','=','tapilu')],
+            'view_type' : 'form',
+            'res_model' : 'tabungan_pks',
+            'view_id' : False,
+            'view_mode': 'tree,form',
+            'type':'ir.actions.act_window'
+        }
+
+    # Field Saldo Tabungan
+    saldo_tabungan_tapilu         = fields.Float(string='Saldo TAPILU', compute='get_saldo_tapilu')
+    
     
     

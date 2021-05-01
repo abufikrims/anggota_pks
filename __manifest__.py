@@ -38,6 +38,7 @@ Fitur-Fitur
 		"view/ref_data_wilayah.xml",
 		"view/aktivitas.xml",
 		"view/struktural.xml",
+		"view/keuangan.xml",
 		"report/pks_anggota.xml",
 		"report/pekerjaan.xml",
 		"report/pendidikan.xml",

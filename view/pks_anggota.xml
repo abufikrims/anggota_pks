@@ -41,6 +41,12 @@
                             <button type="object" name="open_aktivitas_liqo" class="oe_stat_button" icon="fa-thumbs-o-up">
                                 <field name="aktivitas_liqo_count" widget="statinfo" string="Liqo Tarbiyah"/>
                             </button>
+                            <button type="object" name="open_tabungan_iwai" class="oe_stat_button" icon="fa-money">
+                                <field name="saldo_tabungan_iwai" widget="statinfo" string="Saldo IWAI"/>
+                            </button>
+                            <button type="object" name="open_tabungan_tapilu" class="oe_stat_button" icon="fa-money">
+                                <field name="saldo_tabungan_tapilu" widget="statinfo" string="Saldo TAPILU"/>
+                            </button>
                         </div>
                         <field name="image_1920" widget="image" class="oe_image_custom" style="width: 160px; height: 200px;" />
                         <div class="oe_title">
