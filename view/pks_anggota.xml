@@ -95,7 +95,7 @@
                             <field name="amanah_struktural" />
                             <field name="jabatan_struktural" />
                             <field name="jabatan_yayasan"/>
-                            <field name="amanah_masyarakat" />
+                            <field name="amanah" domain="[('kota_id','=',tg_kota_id)]"/>
                             <field name="jabatan_masyarakat" />
                             <field name="ada_kta" widget="radio"/>
                             <field name="no_kta" attrs="{'readonly':[('ada_kta','=','0')]}" force_save="1"/>

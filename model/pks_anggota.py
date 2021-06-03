@@ -41,6 +41,8 @@ class pks_anggota(models.Model):
     jabatan_struktural  = fields.Char( string="Jabatan Struktural",  help="")
     jabatan_yayasan     = fields.Char(string='Jabatan Yayasan', help='')
     amanah_masyarakat   = fields.Boolean( string="Amanah Kemasyarakatan",  help="")
+    amanah              = fields.Many2one(comodel_name='ref.kecamatan', string='Amanah')
+    
     jabatan_masyarakat  = fields.Char( string="Jabatan Masyarakat",  help="")
     ada_kta             = fields.Selection(string='Sudah Ber KTA', selection=[('1', 'YA'), ('0', 'TIDAK/BELUM'),], required=True, default='0')
     no_kta              = fields.Char( string="No KTA",  help="")
