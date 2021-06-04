@@ -90,12 +90,13 @@
                         <group>
                             <field name="murobhi" options="{'no_open': True}"/>
                             <field name="halaqoh_id"/>
-                        </group>                               
+                        </group>                  
+                                    
                         <group col="4" colspan="4">
                             <field name="amanah_struktural" />
                             <field name="jabatan_struktural" />
                             <field name="jabatan_yayasan"/>
-                            <field name="amanah" domain="[('kota_id','=',tg_kota_id)]"/>
+                            <field name="amanah"  options="{'no_create_edit':True, 'no_create':True}"/>
                             <field name="jabatan_masyarakat" />
                             <field name="ada_kta" widget="radio"/>
                             <field name="no_kta" attrs="{'readonly':[('ada_kta','=','0')]}" force_save="1"/>
@@ -205,7 +206,6 @@
                     <filter string="Murobhi" name="filter_by_murobhi" domain="[('murobhi','=','')]" />
                     <filter string="Amanah struktural" name="filter_by_amanah_struktural" domain="[('amanah_struktural','=','')]" />
                     <filter string="Jabatan struktural" name="filter_by_jabatan_struktural" domain="[('jabatan_struktural','=','')]" />
-                    <filter string="Amanah masyarakat" name="filter_by_amanah_masyarakat" domain="[('amanah_masyarakat','=','')]" />
                     <filter string="Jabatan masyarakat" name="filter_by_jabatan_masyarakat" domain="[('jabatan_masyarakat','=','')]" />
                     <filter string="No kta" name="filter_by_no_kta" domain="[('no_kta','=','')]" />
                     <field name="name" select="True"/>
@@ -217,7 +217,7 @@
                     <field name="murobhi" select="True"/>
                     <field name="amanah_struktural" select="True"/>
                     <field name="jabatan_struktural" select="True"/>
-                    <field name="amanah_masyarakat" select="True"/>
+                    
                     <field name="jabatan_masyarakat" select="True"/>
                     <field name="no_kta" select="True"/>
                     <field name="pekerjaan_id" select="True"/>
@@ -245,7 +245,7 @@
                     <field name="murobhi" />
                     <field name="amanah_struktural" />
                     <field name="jabatan_struktural" />
-                    <field name="amanah_masyarakat" />
+                    
                     <field name="jabatan_masyarakat" />
                     <field name="no_kta" />
                     <field name="pekerjaan_id" />

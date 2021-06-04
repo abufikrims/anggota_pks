@@ -36,12 +36,16 @@ class pks_anggota(models.Model):
     tg_kecamatan_id     = fields.Many2one(comodel_name='ref.kecamatan', string='Kecamatan')
     tg_desa_id          = fields.Many2one(comodel_name='ref.desa', string='Desa/Kelurahan')
 
-    
+    # @api.model
+    # def get_kota_default(self):
+    #     return self['res.company'][1].kota_id
+
     amanah_struktural   = fields.Selection(selection=[('dpp','DPP'),('dpw','DPW'),('dpd','DPD'),('dpc','DPC'),('dpra','DPRa')],  string="Amanah Struktural",  help="")
     jabatan_struktural  = fields.Char( string="Jabatan Struktural",  help="")
     jabatan_yayasan     = fields.Char(string='Jabatan Yayasan', help='')
-    amanah_masyarakat   = fields.Boolean( string="Amanah Kemasyarakatan",  help="")
-    amanah              = fields.Many2one(comodel_name='ref.kecamatan', string='Amanah')
+    amanah              = fields.Many2one(comodel_name='ref.kecamatan', string='Amanah', domain=lambda self:[('kota_id','=', self.env['res.company'].search([('id','=',1)]).kota_id.id)])
+
+   
     
     jabatan_masyarakat  = fields.Char( string="Jabatan Masyarakat",  help="")
     ada_kta             = fields.Selection(string='Sudah Ber KTA', selection=[('1', 'YA'), ('0', 'TIDAK/BELUM'),], required=True, default='0')
