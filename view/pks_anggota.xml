@@ -12,6 +12,7 @@
                     <field name="name" />
                     <field name="nik" />
                     <field name="jns_kelamin" />
+                    <field name="mobile"/>
                     <field name="tmp_lahir" />
                     <field name="tgl_lahir" />
                     <field name="status_kawin" />
@@ -245,6 +246,7 @@
                     <field name="murobhi" />
                     <field name="amanah_struktural" />
                     <field name="jabatan_struktural" />
+                    <field name="jenjang_tarbiyah"/>
                     
                     <field name="jabatan_masyarakat" />
                     <field name="no_kta" />
@@ -274,7 +276,7 @@
                                         </li>
 
                                         <li>
-                                            <span class="text-muted">Tgl lahir</span> <field name="tgl_lahir"></field>
+                                            <span class="text-muted">Jenjang</span> <field name="jenjang_tarbiyah"></field>
                                         </li>
                                     </ul>
                                 </div>
