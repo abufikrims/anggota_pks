@@ -11,15 +11,23 @@
                 <tree string="Anggota PKS" default_order="name asc">
                     <field name="name" />
                     <field name="nik" />
-                    <field name="jns_kelamin" />
-                    <field name="mobile"/>
-                    <field name="tmp_lahir" />
+                    <field name="street"/>
                     <field name="tgl_lahir" />
+                    <field name="tmp_lahir" />
+                    <field name="jns_kelamin" />
                     <field name="status_kawin" />
-                    <field name="amanah_struktural" />
-                    <field name="jabatan_struktural" />
-                    <field name="pekerjaan_id" />
                     <field name="pendidikan_id" />
+                    <field name="jabatan_struktural" />
+                    <field name="mobile"/>
+                    <field name="propinsi_id"/>
+                    <field name="kota_id"/>
+                    <field name="kecamatan_id"/>
+                    <field name="desa_id"/>
+                    <field name="email"/>
+                    
+                    <field name="amanah_struktural" />
+                    <field name="pekerjaan_id" />
+                    
                 </tree>
             </field>
         </record>
