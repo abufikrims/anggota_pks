@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- bidang_pks tree view -->
+        <record id="bidang_pks_view_tree" model="ir.ui.view">
+            <field name="name">bidang_pks.view.tree</field>
+            <field name="model">bidang_pks</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="keterangan"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+        <!-- bidang_pks form view -->
+        <record id="bidang_pks_view_form" model="ir.ui.view">
+            <field name="name">bidang_pks.view.form</field>
+            <field name="model">bidang_pks</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="keterangan"/>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- bidang_pks action window -->
+        <record id="bidang_pks_action" model="ir.actions.act_window">
+            <field name="name">Ref Data Bidang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bidang_pks</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="bidang_menu_act" name="Ref Bidang" parent="menu_cdn_ref_data" action="bidang_pks_action" sequence="50"/>
+        
+        
+    </data>
+</odoo>

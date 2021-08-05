@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- rekruitmen_pks tree view -->
+        <record id="rekruitmen_pks_view_tree" model="ir.ui.view">
+            <field name="name">rekruitmen_pks.view.tree</field>
+            <field name="model">rekruitmen_pks</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="tanggal"/>
+                    <field name="rekruiter"/>
+                    <field name="jns_rekruitmen"/>
+                    <field name="bidang_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- rekruitmen_pks form view -->
+        <record id="rekruitmen_pks_view_form" model="ir.ui.view">
+            <field name="name">rekruitmen_pks.view.form</field>
+            <field name="model">rekruitmen_pks</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="No Referensi (AUTO)"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="tanggal"/>
+                            <field name="rekruiter"/>
+                            <field name="jns_rekruitmen"/>
+                            <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','individu'))]}" />
+
+                        </group>
+                        <notebook>
+                            <page name="anggota_rekrutmen" string="Anggota Rekrutmen">
+                                <field name="anggota_ids" string="Daftar Anggota" >
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="nik"/>
+                                        <field name="jns_kelamin"/>
+                                        <field name="mobile"/>
+                                        <field name="status_kawin"/>
+                                        <field name="desa_id"/>
+                                        <field name="kecamatan_id"/>
+                                    </tree>
+                                </field>
+                                
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- sequence rekruitmen_pks -->
+        <record id="seq_rekruitmen_pks" model="ir.sequence">
+            <field name="name">No Referensi</field>
+            <field name="code">rekruitmen_pks</field>
+            <field name="prefix">R%(y)s.%(month)s-</field>
+            <field name="padding">4</field>
+        </record>
+
+        <!-- rekruitmen_pks action window -->
+        <record id="rekruitmen_pks_action" model="ir.actions.act_window">
+            <field name="name">Rekrutmen Anggota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rekruitmen_pks</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="rekruitmen_menu_act" name="Rekrutmen Anggota" parent="anggota_pks_aktivitas_menu" action="rekruitmen_pks_action" sequence="20"/>
+
+
+    </data>
+</odoo>
