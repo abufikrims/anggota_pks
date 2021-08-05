@@ -8,3 +8,4 @@ from . import ref_data_wilayah
 from . import aktivitas
 from . import struktural
 from . import keuangan
+from . import bidang, rekruitmen

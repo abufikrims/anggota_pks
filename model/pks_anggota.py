@@ -169,6 +169,17 @@ class pks_anggota(models.Model):
 
     # Field Saldo Tabungan
     saldo_tabungan_tapilu         = fields.Float(string='Saldo TAPILU', compute='get_saldo_tapilu')
+
+    # Field Rekrutmen
+    rekrutmen_id                  = fields.Many2one(comodel_name='rekruitmen_pks', string='Rekrutmen ID')
+    tgl_rekrutmen                 = fields.Date(string='Tanggal Rekrutmen', related='rekrutmen_id.tanggal')
+    jns_rekrutmen                 = fields.Selection(string='Jenis Rekrutmen', selection=[('individu', 'Individu'), ('bidang', 'Bidang'),], default='individu', related='rekrutmen_id.jns_rekruitmen')
+    bidang_id                     = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', related='rekrutmen_id.bidang_id')
+    rekruiter                     = fields.Many2one(comodel_name='pks_anggota', required=True, string='Direkruit Oleh', related='rekrutmen_id.rekruiter')
+    
+    
+    
+    
     
     
     

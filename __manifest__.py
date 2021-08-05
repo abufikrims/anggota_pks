@@ -39,6 +39,8 @@ Fitur-Fitur
 		"view/aktivitas.xml",
 		"view/struktural.xml",
 		"view/keuangan.xml",
+		"view/bidang.xml",
+		"view/rekruitmen.xml",
 		"report/pks_anggota.xml",
 		"report/pekerjaan.xml",
 		"report/pendidikan.xml",

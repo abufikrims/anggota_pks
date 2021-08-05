@@ -50,3 +50,9 @@ access_manager_tabungan_pks,access_manager_tabungan_pks,model_tabungan_pks,anggo
 
 access_user_jenis_setoran,access_user_jenis_setoran,model_jenis_setoran,anggota_pks.group_pks_user,1,0,0,0
 access_manager_jenis_setoran,access_manager_jenis_setoran,model_jenis_setoran,anggota_pks.group_pks_manager,1,1,1,1
+
+access_user_bidang,access_user_bidang,model_bidang_pks,anggota_pks.group_pks_user,1,0,0,0
+access_manager_bidang,access_manager_bidang,model_bidang_pks,anggota_pks.group_pks_manager,1,1,1,1
+
+access_user_rekruitmen_pks,access_user_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_user,1,0,0,0
+access_manager_rekruitmen_pks,access_manager_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_manager,1,1,1,1
