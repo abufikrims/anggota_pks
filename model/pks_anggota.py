@@ -89,7 +89,13 @@ class pks_anggota(models.Model):
 
     # Dokumen KTP
     dokumen_ktp         = fields.Binary(string='Dokumen KTP')
-    dokumen_name        = fields.Char(string="Nama File")
+    dokumen_name        = fields.Char(string="Nama File KTP")
+
+    # Dokumen KTA
+    dokumen_kta         = fields.Binary(string='Dokumen KTA')
+    dokumen_name_kta    = fields.Char(string="Nama File KTA")
+    
+    
     
     @api.onchange('kota_id')
     def _onchange_kota_id(self):

@@ -195,8 +195,12 @@
                             </page> -->
                         </notebook>
                         <group string="Dokumen KTP">
-                             <field name="dokumen_ktp" filename="dokumen_name"/>
+                             <field name="dokumen_ktp" filename="dokumen_name" widget="image" />
                              <field name="dokumen_name" editable="0"/>
+                        </group>
+                        <group string="Dokumen KTA">
+                             <field name="dokumen_kta" filename="dokumen_name_kta" widget="image" options='{"size": [350, 350]}'/>
+                             <field name="dokumen_name_kta" editable="0"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
