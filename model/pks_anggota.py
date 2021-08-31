@@ -182,6 +182,22 @@ class pks_anggota(models.Model):
     jns_rekrutmen                 = fields.Selection(string='Jenis Rekrutmen', selection=[('individu', 'Individu'), ('bidang', 'Bidang'),], default='individu', related='rekrutmen_id.jns_rekruitmen')
     bidang_id                     = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', related='rekrutmen_id.bidang_id')
     rekruiter                     = fields.Many2one(comodel_name='pks_anggota', string='Direkruit Oleh', related='rekrutmen_id.rekruiter')
+
+    # def action_active(self):
+    #     self.active = True
+
+    # Riwayat Mutasi Anggota
+    mutasi_id                     = fields.Many2one(comodel_name='mutasi_pks', string='Riwayat Mutasi')
+    tgl_mutasi                    = fields.Date(string='Tanggal Mutasi', related='mutasi_id.tanggal')
+    alamat_mutasi                 = fields.Char(string='Alamat Mutasi', related='mutasi_id.alamat')
+    jns_mutasi                    = fields.Selection(string='Jenis Mutasi', selection=[('in', 'Mutasi Masuk'), ('out', 'Mutasi Keluar'),], related='mutasi_id.jns_mutasi')
+    
+    propinsi_mutasi               = fields.Many2one(comodel_name='ref.propinsi', string='Propinsi', related='mutasi_id.propinsi_id')
+    kota_mutasi                   = fields.Many2one(comodel_name='ref.kota', string='Kabupaten/Kota', related='mutasi_id.kota_id')
+    kecamatan_mutasi              = fields.Many2one(comodel_name='ref.kecamatan', string='Kecamatan', related='mutasi_id.kecamatan_id')
+    desa_mutasi                   = fields.Many2one(comodel_name='ref.desa', string='Desa/Kelurahan', related='mutasi_id.desa_id')
+    
+    
     
     
     

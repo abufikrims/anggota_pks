@@ -56,3 +56,6 @@ access_manager_bidang,access_manager_bidang,model_bidang_pks,anggota_pks.group_p
 
 access_user_rekruitmen_pks,access_user_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_user,1,0,0,0
 access_manager_rekruitmen_pks,access_manager_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_manager,1,1,1,1
+
+access_user_mutasi_pks,access_user_mutasi_pks,model_mutasi_pks,anggota_pks.group_pks_user,1,0,0,0
+access_manager_mutasi_pks,access_manager_mutasi_pks,model_mutasi_pks,anggota_pks.group_pks_manager,1,1,1,1

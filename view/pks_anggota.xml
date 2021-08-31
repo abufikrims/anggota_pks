@@ -39,8 +39,10 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Pks anggota">
-                    <header>
-                    </header>
+                    <!-- <header>
+                        <button string="Set Aktif" type="object" name="action_active" attrs="{'invisible':[('active','=',False)]}" />
+                    </header> -->
+                    <field name="active" invisible="1"/>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <!--button type="object" name="action_view_detail" class="oe_stat_button" icon="fa-pencil-square-o"-->
@@ -62,14 +64,14 @@
                             <label for="name" class="oe_edit_only" string="Nama Lengkap Anggota"/>
                             <h1><field name="name"/></h1>
                         </div>
-                        
                         <group string="Data Anggota" col="4" colspan="4">
                             <field name="nik" />
                             <field name="jns_kelamin" />
                             <field name="tmp_lahir" />
                             <field name="tgl_lahir" />
                             <field name="status_kawin" />
-                            <field name="rekrutmen_id"/>
+                            <field name="rekrutmen_id" readonly="1"/>
+                            <field name="mutasi_id" readonly="1"/>
                             
                         </group>
                         <group string="Rekrutmen" col="4" colspan="4" attrs="{'invisible':[('rekrutmen_id','=',False)]}">
@@ -77,6 +79,16 @@
                             <field name="rekruiter"/>
                             <field name="jns_rekrutmen"/>
                             <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','individu'))]}"/>
+                        </group>
+                        <group string="Data Mutasi Anggota" col="4" colspan="4" attrs="{'invisible':[('mutasi_id','=',False)]}">
+                            
+                            <field name="tgl_mutasi"/>
+                            <field name="jns_mutasi"/>
+                            <field name="propinsi_mutasi"/>
+                            <field name="kota_mutasi"/>
+                            <field name="kecamatan_mutasi"/>
+                            <field name="desa_mutasi"/>
+                            <field name="alamat_mutasi"/>
                         </group>
                         <group string="Alamat Sesuai KTP" col="2" colspan="2">
                             <field name="street"/>
@@ -220,15 +232,12 @@
 
                     <filter string="Name" name="filter_by_name" domain="[('name','=','')]" />
                     <filter string="Nik" name="filter_by_nik" domain="[('nik','=','')]" />
-                    <filter string="Jns kelamin" name="filter_by_jns_kelamin" domain="[('jns_kelamin','=','')]" />
-                    <filter string="Tmp lahir" name="filter_by_tmp_lahir" domain="[('tmp_lahir','=','')]" />
-                    <filter string="Tgl lahir" name="filter_by_tgl_lahir" domain="[('tgl_lahir','=','')]" />
-                    <filter string="Status kawin" name="filter_by_status_kawin" domain="[('status_kawin','=','')]" />
-                    <filter string="Murobhi" name="filter_by_murobhi" domain="[('murobhi','=','')]" />
-                    <filter string="Amanah struktural" name="filter_by_amanah_struktural" domain="[('amanah_struktural','=','')]" />
-                    <filter string="Jabatan struktural" name="filter_by_jabatan_struktural" domain="[('jabatan_struktural','=','')]" />
-                    <filter string="Jabatan masyarakat" name="filter_by_jabatan_masyarakat" domain="[('jabatan_masyarakat','=','')]" />
-                    <filter string="No kta" name="filter_by_no_kta" domain="[('no_kta','=','')]" />
+                    <filter string="Laki-laki" name="filter_by_jns_kelamin" domain="[('jns_kelamin','=','laki-laki')]" />
+                    <filter string="Perempuan" name="filter_by_jns_kelamin_p" domain="[('jns_kelamin','=','perempuan')]" />
+                    <filter string="Status Menikah" name="filter_by_status_kawin" domain="[('status_kawin','=','menikah')]" />
+                    <filter string="Status Belum Menikah" name="filter_by_status_blmkawin" domain="[('status_kawin','=','belum menikah')]" />
+                    <filter string="Anggota Non Aktif" name="filter_by_nonaktif" domain="[('active','=',False)]" />
+                    <filter string="Anggota Aktif" name="filter_by_aktif" domain="[('active','=',True)]" />
                     <field name="name" select="True"/>
                     <field name="nik" select="True"/>
                     <field name="jns_kelamin" select="True"/>
@@ -246,6 +255,7 @@
                     <group string="Group By..">
                         <filter string="Pekerjaan" domain="[]" name="group_by_pekerjaan_id" context="{'group_by':'pekerjaan_id'}"/>
                         <filter string="Pendidikan" domain="[]" name="group_by_pendidikan_id" context="{'group_by':'pendidikan_id'}"/>
+                        <filter string="Jenjang Anggota" domain="[]" name="group_by_jenjang_id" context="{'group_by':'jenjang_tarbiyah'}"/>
                     </group>
                 </search>
             </field>

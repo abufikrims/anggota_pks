@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- mutasi_pks tree view -->
+        <record id="mutasi_pks_view_tree" model="ir.ui.view">
+            <field name="name">mutasi_pks.view.tree</field>
+            <field name="model">mutasi_pks</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="tanggal"/>
+                    <field name="anggota_id"/>
+                    <field name="jns_mutasi"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- mutasi_pks form view -->
+        <record id="mutasi_pks_view_form" model="ir.ui.view">
+            <field name="name">mutasi_pks.view.form</field>
+            <field name="model">mutasi_pks</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button string="Konfirmasi" type="object" name="action_confirm" states="draft" />
+                        <button string="Reset to Draft" type="object" name="action_draft" states="confirm" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" string="No Referensi (AUTO)"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="tanggal"/>
+                            <field name="anggota_id"/>
+                            <field name="jns_mutasi"/>
+                        </group>
+                        <group string="Asal / Tujuan Mutasi">
+                            <field name="alamat"/>
+                            <field name="propinsi_id"/>
+                            <field name="kota_id" domain="[('propinsi_id','=',propinsi_id)]"/>
+                            <field name="kecamatan_id" domain="[('kota_id','=',kota_id)]"/>
+                            <field name="desa_id" domain="[('kecamatan_id','=',kecamatan_id)]"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- mutasi_pks action window -->
+        <record id="mutasi_pks_action" model="ir.actions.act_window">
+            <field name="name">Aktivitas Mutasi Anggota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mutasi_pks</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+         <record id="seq_mutasi_pks" model="ir.sequence">
+            <field name="name">No Referensi</field>
+            <field name="code">mutasi_pks</field>
+            <field name="prefix">M/%(y)s.%(month)s/</field>
+            <field name="padding">4</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="mutasi_menu_act" name="Mutasi Anggota" parent="anggota_pks_aktivitas_menu" action="mutasi_pks_action" sequence="30"/>
+    </data>
+
+</odoo>
