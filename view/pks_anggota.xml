@@ -41,7 +41,7 @@
                 <form string="Pks anggota" duplicate="0">
                     <header>
                         <!-- <button string="Set Aktif" type="object" name="action_active" attrs="{'invisible':[('active','=',False)]}" /> -->
-                        <button name="%(anggota_pks.act_create_user_login)d" type="action" string="Create Login" class="oe_highlight" attrs="{'invisible':[('user_id','!=',False)]}"/>
+                        <button name="%(anggota_pks.act_create_user_login)d" type="action" string="Create Login" class="oe_highlight" attrs="{'invisible':[('user_id','!=',False)]}" groups="anggota_pks.group_pks_manager"/>
                     </header>
                     <field name="active" invisible="1"/>
                     <sheet>
