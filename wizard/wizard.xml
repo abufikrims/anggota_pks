@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <record model="ir.ui.view" id="wizard_partner_user_login_form_view">
+            <field name="name">partner.user.login.form</field>
+            <field name="model">partner.user.login</field>
+            <field name="arch" type="xml">
+                <form string="Tambah User Login">
+                    <sheet>
+                        <field name="users_line">
+                            <tree editable="bottom">
+                                <field name="partner_id"/>
+                                <field name="login"/>
+                                <field name="password"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button name="create_login" string="Create Login" type="object" class="btn-primary"/>
+                        or
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- partner.user.login action window -->
+        <record id="act_create_user_login" model="ir.actions.act_window">
+            <field name="name">Buat User Login</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.user.login</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+<!--         
+        <record id="action_klinik_kunjungan_invoice_wizard" model="ir.actions.act_window">
+            <field name="name">Create Invoice</field>
+            <field name="res_model">klinik.kunjungan.invoice.wizard</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record> -->
+
+
+        <!-- <act_window id="act_create_user_login"
+                    name="Create User Login"
+                    res_model="partner.user.login"
+                    src_model="res.partner"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"
+                    multi="True"/>
+         -->
+    </data>
+</odoo>

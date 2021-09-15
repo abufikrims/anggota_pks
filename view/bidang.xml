@@ -11,6 +11,7 @@
                     <!-- Add your fields here -->
                     <field name="name"/>
                     <field name="keterangan"/>
+                    <field name="is_recruiter"/>
                     
                 </tree>
             </field>
@@ -27,7 +28,7 @@
                             <!-- Add your fields here -->
                             <field name="name"/>
                             <field name="keterangan"/>
-                            
+                            <field name="is_recruiter"/>
                         </group>
                     </sheet>
                 </form>

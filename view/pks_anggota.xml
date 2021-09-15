@@ -38,10 +38,11 @@
             <field name="type">form</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Pks anggota">
-                    <!-- <header>
-                        <button string="Set Aktif" type="object" name="action_active" attrs="{'invisible':[('active','=',False)]}" />
-                    </header> -->
+                <form string="Pks anggota" duplicate="0">
+                    <header>
+                        <!-- <button string="Set Aktif" type="object" name="action_active" attrs="{'invisible':[('active','=',False)]}" /> -->
+                        <button name="%(anggota_pks.act_create_user_login)d" type="action" string="Create Login" class="oe_highlight" attrs="{'invisible':[('user_id','!=',False)]}"/>
+                    </header>
                     <field name="active" invisible="1"/>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -72,11 +73,11 @@
                             <field name="status_kawin" />
                             <field name="rekrutmen_id" readonly="1"/>
                             <field name="mutasi_id" readonly="1"/>
-                            
+                            <field name="user_id" readonly="True" string="User Login"/>
                         </group>
                         <group string="Rekrutmen" col="4" colspan="4" attrs="{'invisible':[('rekrutmen_id','=',False)]}">
                             <field name="tgl_rekrutmen"/>
-                            <field name="rekruiter"/>
+                            <!-- <field name="rekruiter"/> -->
                             <field name="jns_rekrutmen"/>
                             <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','individu'))]}"/>
                         </group>

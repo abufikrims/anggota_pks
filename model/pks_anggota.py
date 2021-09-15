@@ -181,7 +181,7 @@ class pks_anggota(models.Model):
     tgl_rekrutmen                 = fields.Date(string='Tanggal Rekrutmen', related='rekrutmen_id.tanggal')
     jns_rekrutmen                 = fields.Selection(string='Jenis Rekrutmen', selection=[('individu', 'Individu'), ('bidang', 'Bidang'),], default='individu', related='rekrutmen_id.jns_rekruitmen')
     bidang_id                     = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', related='rekrutmen_id.bidang_id')
-    rekruiter                     = fields.Many2one(comodel_name='pks_anggota', string='Direkruit Oleh', related='rekrutmen_id.rekruiter')
+    #rekruiter                     = fields.Many2one(comodel_name='pks_anggota', string='Direkruit Oleh', related='rekrutmen_id.rekruiter')
 
     # def action_active(self):
     #     self.active = True

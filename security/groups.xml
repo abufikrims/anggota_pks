@@ -1,10 +1,31 @@
 <odoo>
 	<data>
-		<record model="ir.module.category" id="module_category_anggota_pks">
-			<field name="name">anggota_pks</field>
-			<field name="description">Anggota PKS Groups</field>
+		<!-- Pengelompokan Hak Akses ke dalam Kategori Aplikasi Anggota PKS 
+		     Terdiri dari Sub Kategori :
+			 a. Level Aplikasi
+			 b. Fitur Khusus
+		-->
+		<record model="ir.module.category" id="category_aplikasi_anggota_pks">
+			<field name="name">Aplikasi Anggota PKS</field>
+			<field name="description">Aplikasi Anggota PKS</field>
 			<field name="sequence">10</field>
 		</record>
+		<!-- Sub Kategori : Level Aplikasi  -->
+		<record model="ir.module.category" id="module_category_anggota_pks">
+			<field name="name">Level Aplikasi</field>
+			<field name="description">Level Aplikasi</field>
+			<field name="sequence">10</field>
+			<field name="parent_id" ref="category_aplikasi_anggota_pks"/>
+		</record>
+		<!-- Sub Kategori : Fitur Khusus -->
+		<record model="ir.module.category" id="fitur_khusus_anggota_pks">
+			<field name="name">Fitur Khusus</field>
+			<field name="description">Fitur Anggota PKS</field>
+			<field name="sequence">20</field>
+			<field name="parent_id" ref="category_aplikasi_anggota_pks"/>
+		</record>
+
+		<!-- Pendefinisian group bertingkat : User dan Manager -->
 		<record id="group_pks_user" model="res.groups">
 			<field name="name">User</field>
 			<field name="category_id" ref="module_category_anggota_pks"/>
@@ -15,5 +36,33 @@
 			<field name="implied_ids" eval="[(4, ref('group_pks_user'))]"/>
         	<field name="users" eval="[(4, ref('base.user_admin'))]"/>
 		</record>
+
+		<!-- Pendefinisian Group yang memiliki akses Fitur Rekruitmen -->
+		<record id="group_pks_rekrutmen" model="res.groups">
+			<field name="name">Akses Rekrutmen</field>
+			<field name="category_id" ref="fitur_khusus_anggota_pks"/>
+		</record>
+
+		<!-- Definisi Record Rule sebagai pembatasan Hak Akses -->
+		<record id="anggota_by_rekruiter" model="ir.rule">
+			<field name="name">Seorang Rekruiter hanya bisa edit anggota yang dibuat olehnya</field>
+			<field name="model_id" ref="model_pks_anggota"/>
+			<field name="groups" eval="[(4, ref('anggota_pks.group_pks_rekrutmen'))]"/>
+			<field name="perm_read" eval="False"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="False"/>
+			<field name="perm_unlink" eval="False"/>
+			<field name="domain_force">[('create_uid.id','=',user.id)]</field>
+    	</record>  
+		<record id="anggota_by_rekruiter_manager" model="ir.rule">
+			<field name="name">Seorang Manager bisa edit semua anggota</field>
+			<field name="model_id" ref="model_pks_anggota"/>
+			<field name="groups" eval="[(4, ref('anggota_pks.group_pks_manager'))]"/>
+			<field name="perm_read" eval="False"/>
+			<field name="perm_write" eval="True"/>
+			<field name="perm_create" eval="False"/>
+			<field name="perm_unlink" eval="False"/>
+			<field name="domain_force">[(1,'=',1)]</field>
+    	</record>  
 	</data>
 </odoo>

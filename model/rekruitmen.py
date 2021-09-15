@@ -8,10 +8,10 @@ class rekruitmen(models.Model):
 
     name            = fields.Char(string="No. Referensi",  help="", readonly=True, default='Auto')
     tanggal         = fields.Date(string='Tanggal', required=True, default=fields.Date.context_today)
-    rekruiter       = fields.Many2one(comodel_name='pks_anggota', required=True, string='Direkruit Oleh')
-    jns_rekruitmen  = fields.Selection(string='Jenis Rekrutmen', selection=[('individu', 'Individu'), ('bidang', 'Bidang'),], default='individu')
+    #rekruiter       = fields.Many2one(comodel_name='pks_anggota', required=True, string='Direkruit Oleh')
+    jns_rekruitmen  = fields.Selection(string='Jenis Rekrutmen', selection=[('upa', 'UPA'), ('bidang', 'Bidang'),('dpc','DPC')], default='upa')
     anggota_ids     = fields.One2many(comodel_name='pks_anggota', inverse_name='rekrutmen_id', string='Daftar Anggota Rekrutmen')
-    bidang_id       = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang')
+    bidang_id       = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', domain=[('is_recruiter','=',True)])
 
     @api.model
     def create(self, vals):

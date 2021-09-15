@@ -18,6 +18,8 @@ access_user_ref_pendidikan,access_user_ref_pendidikan,model_ref_pendidikan,anggo
 access_manager_ref_pendidikan,access_manager_ref_pendidikan,model_ref_pendidikan,anggota_pks.group_pks_manager,1,1,1,1
 
 access_user_pks_anggota,access_user_pks_anggota,model_pks_anggota,anggota_pks.group_pks_user,1,0,0,0
+access_rekruitmen_pks_anggota,access_rekruitmen_pks_anggota,model_pks_anggota,anggota_pks.group_pks_rekrutmen,1,1,1,0
+access_rekruitmen_res_partner,access_rekruitmen_res_partner,base.model_res_partner,anggota_pks.group_pks_rekrutmen,1,1,1,0
 access_manager_pks_anggota,access_manager_pks_anggota,model_pks_anggota,anggota_pks.group_pks_manager,1,1,1,1
 
 access_user_pks_keluarga,access_user_pks_keluarga,model_pks_keluarga,anggota_pks.group_pks_user,1,0,0,0
@@ -55,7 +57,11 @@ access_user_bidang,access_user_bidang,model_bidang_pks,anggota_pks.group_pks_use
 access_manager_bidang,access_manager_bidang,model_bidang_pks,anggota_pks.group_pks_manager,1,1,1,1
 
 access_user_rekruitmen_pks,access_user_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_user,1,0,0,0
+access_group_rekruitmen_pks,access_group_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_rekrutmen,1,1,1,0
 access_manager_rekruitmen_pks,access_manager_rekruitmen_pks,model_rekruitmen_pks,anggota_pks.group_pks_manager,1,1,1,1
 
 access_user_mutasi_pks,access_user_mutasi_pks,model_mutasi_pks,anggota_pks.group_pks_user,1,0,0,0
 access_manager_mutasi_pks,access_manager_mutasi_pks,model_mutasi_pks,anggota_pks.group_pks_manager,1,1,1,1
+
+access_manager_create_login,access_manager_create_login,model_partner_user_login,anggota_pks.group_pks_manager,1,1,1,1
+access_manager_create_user_line,access_manager_create_user_line,model_users_line,anggota_pks.group_pks_manager,1,1,1,1

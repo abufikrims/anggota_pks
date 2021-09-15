@@ -7,6 +7,8 @@ class bidang(models.Model):
 
     name            = fields.Char(string='Nama Bidang')
     keterangan      = fields.Char(string='Keterangan')
+    is_recruiter    = fields.Boolean(string='Akses Rekrutmen ?', default=False)
+    
 
 
     

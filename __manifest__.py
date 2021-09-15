@@ -28,6 +28,7 @@ Fitur-Fitur
 	"data": [
 		"security/groups.xml",
 		"security/ir.model.access.csv",
+		"wizard/wizard.xml",
 		"view/menu.xml",
 		"view/pks_anggota.xml",
 		"view/pekerjaan.xml",

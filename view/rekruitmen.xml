@@ -11,7 +11,7 @@
                     <!-- Add your fields here -->
                     <field name="name"/>
                     <field name="tanggal"/>
-                    <field name="rekruiter"/>
+                    <!-- <field name="rekruiter"/> -->
                     <field name="jns_rekruitmen"/>
                     <field name="bidang_id"/>
                 </tree>
@@ -32,9 +32,9 @@
                         <group>
                             <!-- Add your fields here -->
                             <field name="tanggal"/>
-                            <field name="rekruiter"/>
                             <field name="jns_rekruitmen"/>
-                            <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','individu'))]}" />
+                            <!-- <field name="rekruiter"/> -->
+                            <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','upa'))]}" options="{'no_create_edit':True, 'no_create':True}" />
 
                         </group>
                         <notebook>
@@ -82,7 +82,7 @@
         </record>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="rekruitmen_menu_act" name="Rekrutmen Anggota" parent="anggota_pks_aktivitas_menu" action="rekruitmen_pks_action" sequence="20"/>
+        <menuitem id="rekruitmen_menu_act" name="Rekrutmen Anggota" parent="anggota_pks_aktivitas_menu" action="rekruitmen_pks_action" groups="anggota_pks.group_pks_rekrutmen" sequence="20"/>
 
 
     </data>
