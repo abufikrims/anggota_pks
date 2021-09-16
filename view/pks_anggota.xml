@@ -78,8 +78,8 @@
                         <group string="Rekrutmen" col="4" colspan="4" attrs="{'invisible':[('rekrutmen_id','=',False)]}">
                             <field name="tgl_rekrutmen"/>
                             <!-- <field name="rekruiter"/> -->
-                            <field name="jns_rekrutmen"/>
-                            <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','individu'))]}"/>
+                            <field name="jns_rekrutmen" readonly="1" force_save="1"/>
+                            <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','upa'))]}"/>
                         </group>
                         <group string="Data Mutasi Anggota" col="4" colspan="4" attrs="{'invisible':[('mutasi_id','=',False)]}">
                             

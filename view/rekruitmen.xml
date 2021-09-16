@@ -32,7 +32,7 @@
                         <group>
                             <!-- Add your fields here -->
                             <field name="tanggal"/>
-                            <field name="jns_rekruitmen"/>
+                            <field name="jns_rekruitmen" required="1"/>
                             <!-- <field name="rekruiter"/> -->
                             <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','upa'))]}" options="{'no_create_edit':True, 'no_create':True}" />
 

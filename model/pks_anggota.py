@@ -14,7 +14,7 @@ class pks_anggota(models.Model):
     partner_id          = fields.Many2one("res.partner", string='Partner ID', required=True, ondelete="cascade")
     nik                 = fields.Char( string="NIK", required=True, help="")
     jns_kelamin         = fields.Selection(selection=[('laki-laki','Laki-Laki'),('perempuan','Perempuan')],  string="Jenis kelamin", required=True, help="")
-    tmp_lahir           = fields.Char( string="Tmp lahir",  help="")
+    tmp_lahir           = fields.Char( string="Tmp lahir",  help="", track_visibility='onchange')
     tgl_lahir           = fields.Date( string="Tgl lahir",  help="")
     status_kawin        = fields.Selection(selection=[('menikah','Menikah'),('janda','Janda'),('duda','Duda'),('belum menikah','Belum Menikah')],  string="Status Kawin", required=True, help="")
 
@@ -177,10 +177,10 @@ class pks_anggota(models.Model):
     saldo_tabungan_tapilu         = fields.Float(string='Saldo TAPILU', compute='get_saldo_tapilu')
 
     # Field Rekrutmen
-    rekrutmen_id                  = fields.Many2one(comodel_name='rekruitmen_pks', string='Rekrutmen ID')
+    rekrutmen_id                  = fields.Many2one(comodel_name='rekruitmen_pks', string='Rekrutmen ID', store=True)
     tgl_rekrutmen                 = fields.Date(string='Tanggal Rekrutmen', related='rekrutmen_id.tanggal')
-    jns_rekrutmen                 = fields.Selection(string='Jenis Rekrutmen', selection=[('individu', 'Individu'), ('bidang', 'Bidang'),], default='individu', related='rekrutmen_id.jns_rekruitmen')
-    bidang_id                     = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', related='rekrutmen_id.bidang_id')
+    jns_rekrutmen                 = fields.Selection(string='Jenis Rekrutmen', selection=[('upa', 'UPA'), ('bidang', 'Bidang'),('dpc','DPC')], related='rekrutmen_id.jns_rekruitmen', store=True)
+    bidang_id                     = fields.Many2one(comodel_name='bidang_pks', string='Nama Bidang', related='rekrutmen_id.bidang_id', store=True)
     #rekruiter                     = fields.Many2one(comodel_name='pks_anggota', string='Direkruit Oleh', related='rekrutmen_id.rekruiter')
 
     # def action_active(self):
