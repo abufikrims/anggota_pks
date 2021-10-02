@@ -34,7 +34,9 @@
                             <field name="tanggal"/>
                             <field name="jns_rekruitmen" required="1"/>
                             <!-- <field name="rekruiter"/> -->
-                            <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','upa'))]}" options="{'no_create_edit':True, 'no_create':True}" />
+                            <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','upa','dpc'))]}" options="{'no_create_edit':True, 'no_create':True}" />
+                            <field name="upa_id" attrs="{'invisible':[('jns_rekruitmen','in',('','bidang','dpc'))]}" options="{'no_create_edit':True, 'no_create':True}" />
+                            <field name="dpc_id" attrs="{'invisible':[('jns_rekruitmen','in',('','bidang','upa'))]}" options="{'no_create_edit':True, 'no_create':True}" />
 
                         </group>
                         <notebook>

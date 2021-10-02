@@ -36,7 +36,7 @@ class struktural_pks(models.Model):
     @api.onchange('kecamatan_id')
     def _onchange_kecamatan(self):
         if self.kecamatan_id:
-            self.name = "Susunan Pengurus DPC PKS - Kecamatan "+  str(self.kecamatan_id.name)
+            self.name = "DPC PKS - Kecamatan "+  str(self.kecamatan_id.name)
 
 class struktural_pks_lines(models.Model):
     _name               = 'struktural_pks_lines'

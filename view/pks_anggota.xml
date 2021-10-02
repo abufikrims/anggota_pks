@@ -79,7 +79,9 @@
                             <field name="tgl_rekrutmen"/>
                             <!-- <field name="rekruiter"/> -->
                             <field name="jns_rekrutmen" readonly="1" force_save="1"/>
-                            <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','upa'))]}"/>
+                            <field name="bidang_id" attrs="{'invisible':[('jns_rekrutmen','in',('','upa','dpc'))]}"/>
+                            <field name="upa_id" attrs="{'invisible':[('jns_rekrutmen','in',('','bidang','dpc'))]}"/>
+                            <field name="dpc_id" attrs="{'invisible':[('jns_rekrutmen','in',('','upa','dpc'))]}"/>
                         </group>
                         <group string="Data Mutasi Anggota" col="4" colspan="4" attrs="{'invisible':[('mutasi_id','=',False)]}">
                             
@@ -163,7 +165,7 @@
                             <!-- <field name="tarbiyah3_ids" attrs="{'invisible':[('last_jenjang','in',('','pendukung','penggerak'))]}" domain="[('jenjang_id.kategori','=','pelopor')]"/> -->
 
                         </group>
-                        <notebook>
+                        <!-- <notebook>
                             <page string="Keluarga Inti" attrs="{'invisible':[('status_kawin','=','belum menikah')]}">
                                 <group col="4" colspan="4">
                                     <field name="spouse_nama"/>
@@ -203,10 +205,7 @@
                                     </field>
                                 </group>
                             </page>
-                            <!-- <page string="Tarbiyah">
-                                <field name="tarbiyah_ids"/>
-                            </page> -->
-                        </notebook>
+                        </notebook> -->
                         <group string="Dokumen KTP">
                              <field name="dokumen_ktp" filename="dokumen_name" widget="image" />
                              <field name="dokumen_name" invisible="1"/>
