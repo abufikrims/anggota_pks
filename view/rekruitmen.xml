@@ -35,8 +35,9 @@
                             <field name="jns_rekruitmen" required="1"/>
                             <!-- <field name="rekruiter"/> -->
                             <field name="bidang_id" attrs="{'invisible':[('jns_rekruitmen','in',('','upa','dpc'))]}" options="{'no_create_edit':True, 'no_create':True}" />
-                            <field name="upa_id" attrs="{'invisible':[('jns_rekruitmen','in',('','bidang','dpc'))]}" options="{'no_create_edit':True, 'no_create':True}" />
+                            <field name="upa_id" attrs="{'invisible':[('jns_rekruitmen','in',('','bidang','dpc'))]}" options="{'no_create_edit':True, 'no_create':True}" readonly="1" force_save="1" />
                             <field name="dpc_id" attrs="{'invisible':[('jns_rekruitmen','in',('','bidang','upa'))]}" options="{'no_create_edit':True, 'no_create':True}" />
+                            <field name="keterangan"/>
 
                         </group>
                         <notebook>
@@ -86,6 +87,20 @@
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="rekruitmen_menu_act" name="Rekrutmen Anggota" parent="anggota_pks_aktivitas_menu" action="rekruitmen_pks_action" groups="anggota_pks.group_pks_rekrutmen" sequence="20"/>
 
+        <!-- rekruitmen_pks inherit form view -->
+        <record id="rekruitmen_pks_inherited" model="ir.ui.view">
+            <field name="name">rekruitmen_pks.inherit.view.form</field>
+            <field name="model">rekruitmen_pks</field>
+            <field name="inherit_id" ref="anggota_pks.rekruitmen_pks_view_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('anggota_pks.group_pks_manager')])]"/>
+            <field name="arch" type="xml">
+                <!-- Add your xpath here -->
+                <field name="upa_id" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </field>
 
+                
+            </field>
+        </record>
     </data>
 </odoo>
